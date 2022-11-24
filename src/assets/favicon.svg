@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="1000" height="1000"><rect width="1000" height="1000" rx="250" ry="250" fill="#ffffff"></rect><g transform="matrix(2.3391812865497075,0,0,2.3391812865497075,100,315.2046783625731)"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="342" height="158"><svg xmlns="http://www.w3.org/2000/svg" height="158" width="342">
+<g stroke-width="9.5" stroke="#000" fill="none">
+<circle cx="54" cy="54" r="49.25" stroke="#0081c8"></circle>
+<circle cx="171" cy="54" r="49.25"></circle>
+<circle cx="288" cy="54" r="49.25" stroke="#ee334e"></circle>
+<circle cx="112.5" cy="104" r="49.25" stroke="#fcb131"></circle>
+<circle cx="229.5" cy="104" r="49.25" stroke="#00a651"></circle>
+<path d="M93.4,24.45A49.25,49.25 0 0 1 93.4,83.55" stroke="#0081c8"></path>
+<path d="M210.4,24.45A49.25,49.25 0 0 1 210.4,83.55M171,103.25A49.25,49.25 0 0 1 141.45,93.4"></path>
+<path d="M288,103.25A49.25,49.25 0 0 1 258.45,93.4" stroke="#ee334e"></path></g></svg></svg></g></svg>
