@@ -1,0 +1,15 @@
+{
+  "name": "projeto-final",
+  "version": "1.0.0",
+  "description": "Projeto final de ITW",
+  "source": "src/index.html",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "scripts": {
+    "start": "wds --node-resolve --open --watch --root-dir ./src"
+  },
+  "author": "João Capucho, Carolina Silva",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@web/dev-server": "^0.1.35"
+  }
+}
