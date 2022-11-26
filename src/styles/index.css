@@ -1,0 +1,14 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.carousel-item img {
+    max-height: 500px;
+    object-position: center bottom;
+    min-width: auto;
+    object-fit: cover;
+}
+
+.carousel-caption {
+    background: radial-gradient(rgba(0, 0, 0, 0.85), transparent 80%);
+}

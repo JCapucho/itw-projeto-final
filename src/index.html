@@ -14,12 +14,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <!-- Set the entire body to use Open Sans and fallback to sans-serif -->
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-        }
-    </style>
+    <!-- Include the index's css stylesheet -->
+    <link href="/styles/index.css" rel="stylesheet">
     <!-- Import FontAwesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
@@ -27,7 +23,7 @@
     <!-- Set the favicon to our custom one -->
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
-    <title>Jogos Olímpicos</title>
+    <title>Olympic Games</title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -35,7 +31,7 @@
     <nav class="navbar navbar-expand-md bg-light">
         <div class="container-fluid">
             <!-- NavBar Branding -->
-            <a class="navbar-brand p-0" href="/">
+            <a class="navbar-brand p-0" href="/index.html">
                 <img src="/assets/logo.svg" alt="Logo" height="30" class="d-inline-block align-text-top">
             </a>
             <!-- NavBar Collapse button (small screens) -->
@@ -62,7 +58,65 @@
     </nav>
     <!-- END: Navigation Bar -->
 
-    <!-- Put content here -->
+    <!-- START: Main Carousel -->
+    <div id="mainCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+                aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <!-- START: Carousel contents -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/assets/img/CarouselOlympic2021.webp" class="d-block w-100" alt="Jogos olímpicos de 2021">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>2021 Olympic Games</h5>
+                    <p>
+                        The XXXII Olympiad was held at Tokyo after a year of delay due to the COVID-19 pandemic
+                    </p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/assets/img/CarouselOlympic2016.jpg" class="d-block w-100" alt="Jogos olímpicos de 2016">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>2016 Olympic Games</h5>
+                    <p>
+                        The previous edition was held at Rio de Janeiro and featured over 11,000 athletes
+                    </p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/assets/img/CarouselOlympicWinter2022.webp" class="d-block w-100"
+                    alt="Jogos olímpicos de inverno">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Winter Olympic Games</h5>
+                    <p>
+                        A separate event focused on winter sports last held in 2022 in Beijing
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- END: Carousel contents -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!-- END: Main Carousel -->
+
+    <div class="container mt-5">
+        The modern <b>Olympic Games</b> or <b>Olympics</b> are the leading international sporting
+        events featuring summer and winter sports competitions in which thousands of athletes from around the world
+        participate in a variety of competitions. The Olympic Games are considered the world's foremost sports
+        competition with more than 200 teams, representing sovereign states and territories, participating. The
+        Olympic Games are normally held every four years, and since 1994, have alternated between the Summer and Winter
+        Olympics every two years during the four-year period.
+    </div>
 
     <!-- Website footer -->
     <footer class="bg-light text-center mt-auto">
