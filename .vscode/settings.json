@@ -1,4 +1,5 @@
 {
     "editor.formatOnSave": true,
-    "files.trimFinalNewlines": false
+    "files.trimFinalNewlines": false,
+    "python.formatting.provider": "black"
 }
