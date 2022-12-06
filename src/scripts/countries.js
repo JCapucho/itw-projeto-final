@@ -25,10 +25,6 @@ function CountriesViewModel() {
 
 const viewModel = new CountriesViewModel();
 
-window.addEventListener("scroll", function () {
-    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
-        viewModel.loadMoreCountries();
-    }
-});
+addInfiniteViewController(() => viewModel.loadMoreCountries());
 
 ko.applyBindings(viewModel)

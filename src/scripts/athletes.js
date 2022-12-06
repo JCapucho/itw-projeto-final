@@ -25,10 +25,6 @@ function AthletesViewModel() {
 
 const viewModel = new AthletesViewModel();
 
-window.addEventListener("scroll", function() {
-    if(window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
-        viewModel.loadMoreAthletes();
-    }
-});
+addInfiniteViewController(() => viewModel.loadMoreAthletes());
 
 ko.applyBindings(viewModel)
