@@ -60,11 +60,16 @@
 
     <!-- START: Main Carousel -->
     <div id="mainCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active" aria-current="true"
-                aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <div class="carousel-indicators" data-bind="foreach: results">
+            <button type="button" data-bs-target="#mainCarousel" data-bind="
+                attr: {
+                    'data-bs-slide-to': $index(),
+                    'aria-current': $index() === 0,
+                    'aria-label': 'Slide ' + ($index() + 1)
+                },
+                css: {
+                    'active': $index() === 0
+                }"></button>
         </div>
         <!-- START: Carousel contents -->
         <div class="carousel-inner" data-bind="foreach: results">
@@ -88,7 +93,25 @@
     </div>
     <!-- END: Main Carousel -->
 
-    <div class="container mt-5">
+    <!-- START: Anime shenanigans -->
+    <div class="my-5 d-flex justify-content-center">
+        <svg class="animate" xmlns="http://www.w3.org/2000/svg" height="158" width="342">
+            <g stroke-width="9.5" stroke="#000" fill="none">
+                <circle cx="54" cy="54" r="49.25" stroke="#0081c8" />
+                <circle cx="171" cy="54" r="49.25" />
+                <circle cx="288" cy="54" r="49.25" stroke="#ee334e" />
+                <circle cx="112.5" cy="104" r="49.25" stroke="#fcb131" />
+                <circle cx="229.5" cy="104" r="49.25" stroke="#00a651" />
+                <path d="M93.4,24.45A49.25,49.25 0 0 1 93.4,83.55" stroke="#0081c8" />
+                <path d="M210.4,24.45A49.25,49.25 0 0 1 210.4,83.55M171,103.25A49.25,49.25 0 0 1 141.45,93.4" />
+                <path d="M288,103.25A49.25,49.25 0 0 1 258.45,93.4" stroke="#ee334e" />
+            </g>
+        </svg>
+    </div>
+    <!-- END: Anime shenanigans -->
+
+
+    <div class="container my-5">
         The modern <b>Olympic Games</b> or <b>Olympics</b> are the leading international sporting
         events featuring summer and winter sports competitions in which thousands of athletes from around the world
         participate in a variety of competitions. The Olympic Games are considered the world's foremost sports
@@ -111,6 +134,10 @@
     <!-- Include knockout.js bundle -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"
         integrity="sha512-2AL/VEauKkZqQU9BHgnv48OhXcJPx9vdzxN1JrKDVc4FPU/MEE/BZ6d9l0mP7VmvLsjtYwqiYQpDskK9dG8KBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Include anime.js bundle -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
+        integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="scripts/globals.js"></script>
     <script src="scripts/index.js"></script>

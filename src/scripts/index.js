@@ -44,7 +44,7 @@ async function loadGameImage(id) {
 function IndexViewModel() {
     const self = this;
 
-    self.results = ko.observableArray();
+    self.results = ko.observableArray(backupImages);
 
     async function fetchGameImages() {
         const response = await fetch(`${API_URL}/Games`);
@@ -56,10 +56,10 @@ function IndexViewModel() {
 
         imageFetcher:
         for (const game of shuffled) {
-            while (inFlight.length + self.results().length >= 3) {
+            while (inFlight.length + self.results().length >= 5) {
                 await Promise.race(inFlight);
 
-                if (self.results().length >= 3) break imageFetcher;
+                if (self.results().length >= 5) break imageFetcher;
 
                 inFlight = inFlight.filter(queryPromise => !queryPromise.isFulfilled());
             }
@@ -72,11 +72,27 @@ function IndexViewModel() {
                 }))
             );
         }
-
-        if (self.results() < 3) self.results(backupImages)
     }
 
     fetchGameImages();
 }
 
 ko.applyBindings(new IndexViewModel())
+
+const tl = anime.timeline({
+  easing: 'easeOutExpo',
+  duration: 750
+});
+
+tl.add({
+    targets: '.animate g circle',
+    strokeDashoffset: [anime.setDashoffset, 0],
+    easing: 'easeInOutSine',
+    duration: 1500,
+    delay: function(el, i) { return i * 250 },
+}).add({
+    targets: '.animate g path',
+    strokeDashoffset: [anime.setDashoffset, 0],
+    easing: 'easeInOutSine',
+    duration: 1000,
+}, 1500);
