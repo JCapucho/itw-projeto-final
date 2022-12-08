@@ -8,3 +8,33 @@ function addInfiniteViewController(controller) {
         }
     });
 }
+
+function getRandomInt({ min = 0, max = null }) {
+    let randomRes = Math.random()
+    if (max !== null)
+        randomRes *= (max - min)
+    return Math.floor(randomRes + min);
+}
+
+function getRandomArrayElement(array) {
+    if (array.length === 0) return null;
+
+    const idx = getRandomInt({ max: array.length });
+
+    return array[idx];
+}
+
+function MakeQueryablePromise(promise) {
+    if (promise.isResolved) return promise;
+
+    var isResolved = false;
+    var isRejected = false;
+
+    var result = promise.then(
+       function(v) { isResolved = true; return v; }, 
+       function(e) { isRejected = true; throw e; });
+    result.isFulfilled = function() { return isResolved || isRejected; };
+    result.isResolved = function() { return isResolved; }
+    result.isRejected = function() { return isRejected; }
+    return result;
+}
