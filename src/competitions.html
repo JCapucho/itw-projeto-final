@@ -27,7 +27,7 @@
     <!-- Set the favicon to our custom one -->
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" href="assets/favicon.png">
-    <title>Athletes - Olympic Games</title>
+    <title>Countries - Olympic Games</title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -47,13 +47,13 @@
             <!-- START: NavBar Items -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <!-- Athletes Route (Active) -->
+                    <!-- Athletes Route -->
                     <li class="nav-item">
-                        <a class="nav-link active" href="athletes.html">Athletes</a>
+                        <a class="nav-link" href="athletes.html">Athletes</a>
                     </li>
-                    <!-- Competitions Route-->
+                    <!-- Competitions Route (active)-->
                     <li class="nav-item">
-                        <a class="nav-link" href="competitions.html">Competitions</a>
+                        <a class="nav-link active" href="competitions.html">Competitions</a>
                     </li>
                     <!-- Countries Route -->
                     <li class="nav-item">
@@ -78,24 +78,19 @@
     </nav>
     <!-- END: Navigation Bar -->
 
+    <!-- Put content here -->
     <div class="container">
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th scope="col">Id</th>
                     <th scope="col">Name</th>
-                    <th></th>
                 </tr>
             </thead>
-            <tbody data-bind="foreach: athletes">
+            <tbody data-bind="foreach: competitions">
                 <tr>
-                    <td data-bind="formatNameSex: {name: Name, sex: Sex}"></td>
-                    <td class="d-flex justify-content-end align-items-center">
-                        <p class="m-0 me-4" data-bind="formatBestPosition: BestPosition"></p>
-                        <a class="btn btn-primary" title="View details"
-                            data-bind="attr: {href: 'athlete.html?id=' + Id}">
-                            <i class="fa fa-eye" aria-hidden="true"></i>
-                        </a>
-                    </td>
+                    <th scope="row" data-bind="text: Id"></th>
+                    <td data-bind="text: Name"></td>
                 </tr>
             </tbody>
         </table>
@@ -109,7 +104,7 @@
     <!-- Website footer -->
     <footer class="bg-light text-center mt-auto">
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            Trabalho realizado por João Capucho (113713) e Carolina Silva (113475) para ITW com
+            Trabalho realizdo por João Capucho (113713) e Carolina Silva (113475) para ITW com
             <i class="fa fa-heart"></i>
         </div>
     </footer>
@@ -122,7 +117,7 @@
         integrity="sha512-2AL/VEauKkZqQU9BHgnv48OhXcJPx9vdzxN1JrKDVc4FPU/MEE/BZ6d9l0mP7VmvLsjtYwqiYQpDskK9dG8KBA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="scripts/globals.js"></script>
-    <script src="scripts/athletes.js"></script>
+    <script src="scripts/competitions.js"></script>
 </body>
 
 </html>
