@@ -17,26 +17,14 @@ function AthleteViewModel() {
     }, this);
 
     async function loadAthleteInfo() {
-        const response = await fetch(`${API_URL}/Athletes/${athleteId}`);
+        const response = await fetch(`${API_URL}/Athletes/FullDetails?id=${athleteId}`);
         const data = await response.json();
+        console.log(data);
         self.athlete(data);
     }
 
     loadAthleteInfo();
 }
-
-ko.bindingHandlers.formatDay = {
-    update: function(element, valueAccessor) {
-        const dateStr = ko.unwrap(valueAccessor());
-        const formatStr = new Date(dateStr).toLocaleString("pt-PT", { 
-            day: "2-digit",
-            month: "long",
-            year: "numeric"
-        });
-
-        element.textContent = formatStr;
-    }
-};
 
 if (athleteId === null) {
     window.location.href = `athletes.html`

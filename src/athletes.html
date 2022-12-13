@@ -70,16 +70,15 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Id</th>
                     <th scope="col">Name</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody data-bind="foreach: athletes">
                 <tr>
-                    <th scope="row" data-bind="text: Id"></th>
-                    <td data-bind="text: Name"></td>
-                    <td>
+                    <td data-bind="formatNameSex: {name: Name, sex: Sex}"></td>
+                    <td class="d-flex justify-content-end align-items-center">
+                        <p class="m-0 me-4" data-bind="formatBestPosition: BestPosition"></p>
                         <a class="btn btn-primary" title="View details"
                             data-bind="attr: {href: 'athlete.html?id=' + Id}">
                             <i class="fa fa-eye" aria-hidden="true"></i>

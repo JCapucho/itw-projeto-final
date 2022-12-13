@@ -38,3 +38,18 @@ function MakeQueryablePromise(promise) {
     result.isRejected = function() { return isRejected; }
     return result;
 }
+
+if (ko) {
+    ko.bindingHandlers.formatDay = {
+        update: function(element, valueAccessor) {
+            const dateStr = ko.unwrap(valueAccessor());
+            const formatStr = new Date(dateStr).toLocaleString("pt-PT", {
+                day: "2-digit",
+                month: "long",
+                year: "numeric"
+            });
+
+            element.textContent = formatStr;
+        }
+    };
+}
