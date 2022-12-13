@@ -63,7 +63,8 @@
                     <!-- Modalities Route -->
                     <li class="nav-item">
                         <a class="nav-link" href="modalities.html">Modalities</a>
-                    </li><!-- Games Route -->
+                    </li>
+                    <!-- Games Route -->
                     <li class="nav-item">
                         <a class="nav-link" href="games.html">Games</a>
                     </li>
@@ -83,19 +84,22 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>Flag</th>
                     <th scope="col">Name</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody data-bind="foreach: countries">
                 <tr>
+                    <td><img data-bind="attr: {src: Flag} " style="max-height: 40px;" /></td>
                     <td data-bind="text: Name"></td>
-                    <td> <img data-bind="attr: {src: Flag} " style="height: 40px;" /> </td>
-                    <td class="d-flex justify-content-end align-items-center">
-                        <a class="btn btn-primary" title="View details"
-                            data-bind="attr: {href: 'country.html?id=' + Id}">
-                            <i class="fa fa-eye" aria-hidden="true"></i>
-                        </a>
+                    <td>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a class="btn btn-primary" title="View details"
+                                data-bind="attr: {href: 'country.html?id=' + Id}">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </a>
+                        </div>
                     </td>
                 </tr>
             </tbody>

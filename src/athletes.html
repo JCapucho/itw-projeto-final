@@ -92,10 +92,12 @@
                     <td data-bind="formatNameSex: {name: Name, sex: Sex}"></td>
                     <td class="d-flex justify-content-end align-items-center">
                         <p class="m-0 me-4" data-bind="formatBestPosition: BestPosition"></p>
-                        <a class="btn btn-primary" title="View details"
-                            data-bind="attr: {href: 'athlete.html?id=' + Id}">
-                            <i class="fa fa-eye" aria-hidden="true"></i>
-                        </a>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a class="btn btn-primary" title="View details"
+                                data-bind="attr: {href: 'athlete.html?id=' + Id}">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </a>
+                        </div>
                     </td>
                 </tr>
             </tbody>
