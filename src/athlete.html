@@ -55,6 +55,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="modalities.html">Modalities</a>
                     </li>
+                    <!-- Statistics Route -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="statistics.html">Statistics</a>
+                    </li>
                 </ul>
             </div>
             <!-- END: NavBar Items -->
@@ -124,8 +128,35 @@
                 </tbody>
             </table>
         </div>
+
+        <table class="mx-3 mt-5 table table-striped">
+            <tbody data-bind="foreach: Games">
+                <tr>
+                    <th scope="row" data-bind="text: Id"></th>
+                    <td data-bind="text: Name"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="mx-3 mt-3 table table-striped">
+            <tbody data-bind="foreach: Competitions">
+                <tr>
+                    <th scope="row" data-bind="text: Id"></th>
+                    <td data-bind="text: Name"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="mx-3 mt-3 table table-striped">
+            <tbody data-bind="foreach: Modalities">
+                <tr>
+                    <th scope="row" data-bind="text: Id"></th>
+                    <td data-bind="text: Name"></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    </div>
+
     <!-- /ko -->
     <!-- ko if: athlete() === null -->
     <h1>Loading</h1>
