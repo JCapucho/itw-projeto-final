@@ -27,7 +27,7 @@
     <!-- Set the favicon to our custom one -->
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" href="assets/favicon.png">
-    <title>Olympic Games</title>
+    <title>Countries - Olympic Games</title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -59,13 +59,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="modalities.html">Modalities</a>
                     </li>
-                    <!-- Games Route -->
+                    <!-- Games Route (active)-->
                     <li class="nav-item">
-                        <a class="nav-link" href="games.html">Games</a>
+                        <a class="nav-link active" href="games.html">Games</a>
                     </li>
-                    <!-- Statistics Route (Active) -->
+                    <!-- Statistics Route -->
                     <li class="nav-item">
-                        <a class="nav-link active" href="statistics.html">Statistics</a>
+                        <a class="nav-link" href="statistics.html">Statistics</a>
                     </li>
                 </ul>
             </div>
@@ -74,59 +74,33 @@
     </nav>
     <!-- END: Navigation Bar -->
 
-    <div class="container my-5">
-        <p>
-            In this page it's possible to explore how the olympic games evolved in time by selecting one of the
-            avaliables categories. These will show how many items were present in a given edition both for winter and
-            summer games.
-        </p>
-        <!-- START: Tabbed content -->
-        <ul class="nav nav-tabs mt-5" id="statTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="countries-tab" data-bs-toggle="tab"
-                    data-bs-target="#countries-tab-pane" type="button" role="tab" aria-controls="countries-tab-pane"
-                    aria-selected="true">Countries</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="athletes-tab" data-bs-toggle="tab" data-bs-target="#athletes-tab-pane"
-                    type="button" role="tab" aria-controls="athletes-tab-pane" aria-selected="false">Athletes</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="modalities-tab" data-bs-toggle="tab" data-bs-target="#modalities-tab-pane"
-                    type="button" role="tab" aria-controls="modalities-tab-pane"
-                    aria-selected="false">Modalities</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="competitions-tab" data-bs-toggle="tab"
-                    data-bs-target="#competitions-tab-pane" type="button" role="tab"
-                    aria-controls="competitions-tab-pane" aria-selected="false">Competitions</button>
-            </li>
-        </ul>
-        <div class="tab-content" id="statTabContent">
-            <div class="tab-pane fade show active" id="countries-tab-pane" role="tabpanel"
-                aria-labelledby="countries-tab" tabindex="0">
-                <canvas id="countryPerGameChart"></canvas>
-            </div>
-            <div class="tab-pane fade" id="athletes-tab-pane" role="tabpanel" aria-labelledby="athletes-tab"
-                tabindex="0">
-                <canvas id="athletesPerGameChart"></canvas>
-            </div>
-            <div class="tab-pane fade" id="modalities-tab-pane" role="tabpanel" aria-labelledby="modalities-tab"
-                tabindex="0">
-                <canvas id="modalityPerGameChart"></canvas>
-            </div>
-            <div class="tab-pane fade" id="competitions-tab-pane" role="tabpanel" aria-labelledby="competitions-tab"
-                tabindex="0">
-                <canvas id="competitionPerGameChart"></canvas>
+    <!-- Put content here -->
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: games">
+                <tr>
+                    <th scope="row" data-bind="text: Id"></th>
+                    <td data-bind="text: Name"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-center my-3" data-bind="if: loading">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
             </div>
         </div>
-        <!-- END: Tabbed content -->
     </div>
 
     <!-- Website footer -->
     <footer class="bg-light text-center mt-auto">
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            Trabalho realizado por João Capucho (113713) e Carolina Silva (113475) para ITW com
+            Trabalho realizdo por João Capucho (113713) e Carolina Silva (113475) para ITW com
             <i class="fa fa-heart"></i>
         </div>
     </footer>
@@ -134,12 +108,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
-    <!-- Include Chart.js bundle -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.umd.min.js"
-        integrity="sha512-HyprZz2W40JOnIBIXDYHCFlkSscDdYaNe2FYl34g1DOmE9J+zEPoT4HHHZ2b3+milFBtiKVWb4sorDVVp+iuqA=="
+    <!-- Include knockout.js bundle -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"
+        integrity="sha512-2AL/VEauKkZqQU9BHgnv48OhXcJPx9vdzxN1JrKDVc4FPU/MEE/BZ6d9l0mP7VmvLsjtYwqiYQpDskK9dG8KBA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="scripts/globals.js"></script>
-    <script src="scripts/statistics.js"></script>
+    <script src="scripts/games.js"></script>
 </body>
 
 </html>
