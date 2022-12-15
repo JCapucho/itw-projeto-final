@@ -3,9 +3,10 @@ function CountriesViewModel() {
 
     self.page = ko.observable(1);
     self.loading = ko.observable(false);
+    self.finished = ko.observable(false);
     self.countries = ko.observableArray([]);
     self.loadMoreCountries = async function () {
-        if (self.loading()) return;
+        if (self.loading() || self.finished()) return;
 
         self.loading(true);
 
@@ -18,6 +19,7 @@ function CountriesViewModel() {
 
         self.page(page + 1);
         self.loading(false);
+        self.finished(!data.HasNext);
     }
 
     self.loadMoreCountries();

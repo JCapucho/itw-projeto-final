@@ -3,9 +3,10 @@ function CompetitionsViewModel() {
 
     self.page = ko.observable(1);
     self.loading = ko.observable(false);
+    self.finished = ko.observable(false);
     self.games = ko.observableArray([]);
     self.loadMoreGames = async function () {
-        if (self.loading()) return;
+        if (self.loading() || self.finished()) return;
 
         self.loading(true);
 
@@ -18,6 +19,7 @@ function CompetitionsViewModel() {
 
         self.page(page + 1);
         self.loading(false);
+        self.finished(!data.HasNext);
     }
 
     self.loadMoreGames();
@@ -25,10 +27,6 @@ function CompetitionsViewModel() {
 
 const viewModel = new CompetitionsViewModel();
 
-window.addEventListener("scroll", function () {
-    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
-        viewModel.loadMoreGames();
-    }
-});
+addInfiniteViewController(() => viewModel.loadMoreGames());
 
 ko.applyBindings(viewModel)

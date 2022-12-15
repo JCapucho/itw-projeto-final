@@ -39,7 +39,7 @@ function MakeQueryablePromise(promise) {
     return result;
 }
 
-if (ko) {
+if (typeof ko === "object") {
     ko.bindingHandlers.formatDay = {
         update: function(element, valueAccessor) {
             const dateStr = ko.unwrap(valueAccessor());

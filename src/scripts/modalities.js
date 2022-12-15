@@ -3,9 +3,10 @@ function ModalitiesViewModel() {
 
     self.page = ko.observable(1);
     self.loading = ko.observable(false);
+    self.finished = ko.observable(false);
     self.modalities = ko.observableArray([]);
     self.loadMoreModalities = async function () {
-        if (self.loading()) return;
+        if (self.loading() || self.finished()) return;
 
         self.loading(true);
 
@@ -18,6 +19,7 @@ function ModalitiesViewModel() {
 
         self.page(page + 1);
         self.loading(false);
+        self.finished(!data.HasNext);
     }
 
     self.loadMoreModalities();
@@ -25,10 +27,6 @@ function ModalitiesViewModel() {
 
 const viewModel = new ModalitiesViewModel();
 
-window.addEventListener("scroll", function () {
-    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
-        viewModel.loadMoreCountries();
-    }
-});
+addInfiniteViewController(() => viewModel.loadMoreModalities());
 
 ko.applyBindings(viewModel)

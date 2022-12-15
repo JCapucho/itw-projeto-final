@@ -3,9 +3,10 @@ function AthletesViewModel() {
 
     self.page = ko.observable(1);
     self.loading = ko.observable(false);
+    self.finished = ko.observable(false);
     self.athletes = ko.observableArray([]);
     self.loadMoreAthletes = async function() {
-        if (self.loading()) return;
+        if (self.loading() || self.finished()) return;
 
         self.loading(true);
 
@@ -18,6 +19,7 @@ function AthletesViewModel() {
 
         self.page(page + 1);
         self.loading(false);
+        self.finished(!data.HasNext);
     }
 
     self.loadMoreAthletes();
