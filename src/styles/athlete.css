@@ -6,3 +6,12 @@ body {
     width: 100%;
     max-width: 500px;
 }
+
+.game-cover {
+    width: 200px;
+    transition:all 0.25s ease;
+}
+
+.game-cover:hover {
+    transform: scale(2);
+}

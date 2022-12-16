@@ -52,4 +52,21 @@ if (typeof ko === "object") {
             element.textContent = formatStr;
         }
     };
+
+    function createCollapsibleListObject(getData, limit = 5) {
+        const scope = {};
+        scope.open = ko.observable(false);
+        scope.toggle = function() {
+            scope.open(!scope.open());
+        };
+        scope.entries = ko.computed(function() {
+            if (scope.open()) {
+                return getData();
+            } else {
+                return getData()?.slice(0, limit);
+            }
+        }, scope);
+        scope.needsCollapse = ko.computed(() => getData()?.length > limit, scope);
+        return scope;
+    }
 }
