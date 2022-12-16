@@ -84,14 +84,21 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Id</th>
                     <th scope="col">Name</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody data-bind="foreach: modalities">
                 <tr>
-                    <th scope="row" data-bind="text: Id"></th>
                     <td data-bind="text: Name"></td>
+                    <td>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a class="btn btn-primary" title="View details"
+                                data-bind="attr: {href: 'modality.html?id=' + Id}">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>

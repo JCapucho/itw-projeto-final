@@ -75,15 +75,12 @@
     </nav>
     <!-- END: Navigation Bar -->
 
-    <!-- ko if: competition() !== null -->
-    <div class="container my-4" data-bind="with: competition">
+    <!-- ko if: modality() !== null -->
+    <div class="container my-4" data-bind="with: modality">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
                     <a href="modalities.html">Modalities</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a data-bind="text: Modality, attr: {href: 'modality.html?id=' + ModalityId}"></a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page" data-bind="text: Name">
                 </li>
@@ -96,20 +93,22 @@
             class="d-flex gap-3 flex-column flex-lg-row align-items-center align-items-lg-start justify-content-lg-between">
             <img class="athlete-img" data-bind="attr:{src: Photo || 'assets/img/empty-user.webp'}">
             <div class="w-100">
-                <h1>Participant</h1>
+                <h1>Competitions</h1>
                 <table class="table table-striped w-100">
                     <thead>
                         <th>Name</th>
-                        <th>Year</th>
-                        <th>Location</th>
+                        <th></th>
                     </thead>
-                    <tbody data-bind="foreach: Participant">
+                    <tbody data-bind="foreach: Modalities">
                         <tr>
                             <td data-bind="text: Name"></td>
-                            <td data-bind="text: Year"></td>
                             <td>
-                                <span data-bind="text: CityName"></span>,
-                                <span data-bind="text: CountryName"></span>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <a class="btn btn-primary" title="View details"
+                                        data-bind="attr: {href: 'competition.html?id=' + Id}">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
@@ -119,7 +118,7 @@
     </div>
 
     <!-- /ko -->
-    <!-- ko if: competition() === null -->
+    <!-- ko if: modality() === null -->
     <div class="d-flex justify-content-center my-3">
         <div class="spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
@@ -143,7 +142,7 @@
             integrity="sha512-2AL/VEauKkZqQU9BHgnv48OhXcJPx9vdzxN1JrKDVc4FPU/MEE/BZ6d9l0mP7VmvLsjtYwqiYQpDskK9dG8KBA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="scripts/globals.js"></script>
-        <script src="scripts/competition.js"></script>
+        <script src="scripts/modality.js"></script>
 </body>
 
 </html>
