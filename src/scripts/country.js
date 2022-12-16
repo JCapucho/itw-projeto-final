@@ -5,6 +5,9 @@ function CountryViewModel() {
 
     self.country = ko.observable(null);
 
+    self.participantList = createCollapsibleListObject(() => self.country()?.Participant);
+    self.eventsList = createCollapsibleListObject(() => self.country()?.Events);
+
     async function loadCountryInfo() {
         const response = await fetch(`${API_URL}/Countries/${countryId}`);
         const data = await response.json();

@@ -5,6 +5,8 @@ function CompetitionViewModel() {
 
     self.competition = ko.observable(null);
 
+    self.gamesList = createCollapsibleListObject(() => self.competition()?.Participant);
+
     async function loadCompetitionInfo() {
         const response = await fetch(`${API_URL}/Competitions/${competitionId}`);
         const data = await response.json();

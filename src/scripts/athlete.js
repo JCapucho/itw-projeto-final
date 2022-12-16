@@ -4,6 +4,11 @@ function AthleteViewModel() {
     const self = this;
 
     self.athlete = ko.observable(null);
+
+    self.gamesList = createCollapsibleListObject(() => self.athlete()?.Games);
+    self.modalitiesList = createCollapsibleListObject(() => self.athlete()?.Modalities);
+    self.competitionsList = createCollapsibleListObject(() => self.athlete()?.Competitions);
+
     self.sexIcon = ko.computed(function() {
         const sex = this.athlete()?.Sex;
 

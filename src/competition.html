@@ -97,13 +97,14 @@
             <img class="athlete-img" data-bind="attr:{src: Photo || 'assets/img/empty-user.webp'}">
             <div class="w-100">
                 <h1>Appeared in</h1>
-                <table class="table table-striped w-100">
+                <table class="table table-striped w-100" data-bind="with: $root.gamesList">
                     <thead>
                         <th>Name</th>
                         <th>Year</th>
                         <th>Location</th>
+                        <th></th>
                     </thead>
-                    <tbody data-bind="foreach: Participant">
+                    <tbody data-bind="foreach: entries">
                         <tr class="align-middle">
                             <td data-bind="text: Name"></td>
                             <td data-bind="text: Year"></td>
@@ -111,8 +112,32 @@
                                 <span data-bind="text: CityName"></span>,
                                 <span data-bind="text: CountryName"></span>
                             </td>
+                            <td class="text-end">
+                                <a class="btn btn-primary me-2" title="View details"
+                                    data-bind="attr: {href: 'game.html?id=' + Id}">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </a>
+                            </td>
                         </tr>
                     </tbody>
+                    <tfoot data-bind="if: needsCollapse">
+                        <tr>
+                            <td colspan="4" class="text-center">
+                                <button class="btn text-primary" data-bind="click: toggle">
+                                    <!-- ko if: open -->
+                                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                                    Show less
+                                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                                    <!-- /ko -->
+                                    <!-- ko ifnot: open -->
+                                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                                    Show more
+                                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                                    <!-- /ko -->
+                                </button>
+                            </td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>

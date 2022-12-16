@@ -5,6 +5,8 @@ function ModalityViewModel() {
 
     self.modality = ko.observable(null);
 
+    self.competitionsList = createCollapsibleListObject(() => self.modality()?.Modalities);
+
     async function loadModalityInfo() {
         const response = await fetch(`${API_URL}/Modalities/${modalityId}`);
         const data = await response.json();

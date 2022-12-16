@@ -139,22 +139,40 @@
         </div>
 
         <h1>Games</h1>
-        <table class="mt-5 table table-striped">
-            <tbody data-bind="foreach: Games">
+        <table class="mt-5 table table-striped" data-bind="with: $root.gamesList">
+            <tbody data-bind="foreach: entries">
                 <tr>
                     <th scope="row" data-bind="text: Id"></th>
                     <td data-bind="text: Name"></td>
                 </tr>
             </tbody>
+            <tfoot data-bind="if: needsCollapse">
+                <tr>
+                    <td colspan="2" class="text-center">
+                        <button class="btn text-primary" data-bind="click: toggle">
+                            <!-- ko if: open -->
+                            <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                            Show less
+                            <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                            <!-- /ko -->
+                            <!-- ko ifnot: open -->
+                            <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                            Show more
+                            <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                            <!-- /ko -->
+                        </button>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
 
         <h1>Modalities</h1>
-        <table class="mt-3 table table-striped">
+        <table class="mt-3 table table-striped" data-bind="with: $root.modalitiesList">
             <thead>
                 <th>Name</th>
                 <th></th>
             </thead>
-            <tbody data-bind="foreach: Modalities">
+            <tbody data-bind="foreach: entries">
                 <tr class="align-middle">
                     <td data-bind="text: Name"></td>
                     <td class="text-end">
@@ -165,16 +183,34 @@
                     </td>
                 </tr>
             </tbody>
+            <tfoot data-bind="if: needsCollapse">
+                <tr>
+                    <td colspan="2" class="text-center">
+                        <button class="btn text-primary" data-bind="click: toggle">
+                            <!-- ko if: open -->
+                            <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                            Show less
+                            <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                            <!-- /ko -->
+                            <!-- ko ifnot: open -->
+                            <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                            Show more
+                            <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                            <!-- /ko -->
+                        </button>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
 
         <h1>Competitions</h1>
-        <table class="mt-3 table table-striped">
+        <table class="mt-3 table table-striped" data-bind="with: $root.competitionsList">
             <thead>
                 <th>Name</th>
                 <th>Modality</th>
                 <th></th>
             </thead>
-            <tbody data-bind="foreach: Competitions">
+            <tbody data-bind="foreach: entries">
                 <tr class="align-middle">
                     <td data-bind="text: Name"></td>
                     <td data-bind="text: Modality"></td>
@@ -186,6 +222,24 @@
                     </td>
                 </tr>
             </tbody>
+            <tfoot data-bind="if: needsCollapse">
+                <tr>
+                    <td colspan="3" class="text-center">
+                        <button class="btn text-primary" data-bind="click: toggle">
+                            <!-- ko if: open -->
+                            <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                            Show less
+                            <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                            <!-- /ko -->
+                            <!-- ko ifnot: open -->
+                            <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                            Show more
+                            <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                            <!-- /ko -->
+                        </button>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 
