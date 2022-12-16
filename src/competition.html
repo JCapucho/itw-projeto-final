@@ -14,12 +14,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <!-- Set the entire body to use Open Sans and fallback to sans-serif -->
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-        }
-    </style>
+    <!-- Include the athlete's css stylesheet -->
+    <link href="styles/athlete.css" rel="stylesheet">
     <!-- Import FontAwesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
@@ -27,7 +23,7 @@
     <!-- Set the favicon to our custom one -->
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" href="assets/favicon.png">
-    <title>Countries - Olympic Games</title>
+    <title>Olympic Games</title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -52,9 +48,9 @@
                         <a class="nav-link" href="athletes.html"><i class="fa fa-user-o" aria-hidden="true"></i>
                             Athletes</a>
                     </li>
-                    <!-- Competitions Route (active)-->
+                    <!-- Competitions Route-->
                     <li class="nav-item">
-                        <a class="nav-link active" href="competitions.html">Competitions</a>
+                        <a class="nav-link" href="competitions.html">Competitions</a>
                     </li>
                     <!-- Countries Route -->
                     <li class="nav-item">
@@ -64,7 +60,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="modalities.html">Modalities</a>
                     </li>
-                    <!-- Games Route -->
+                    <!-- Games Route-->
                     <li class="nav-item">
                         <a class="nav-link" href="games.html">Games</a>
                     </li>
@@ -79,53 +75,75 @@
     </nav>
     <!-- END: Navigation Bar -->
 
-    <!-- Put content here -->
-    <div class="container">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: competitions">
-                <tr>
-                    <td data-bind="text: Name"></td>
-                    <td>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <a class="btn btn-primary" title="View details"
-                                data-bind="attr: {href: 'competition.html?id=' + Id}">
-                                <i class="fa fa-eye" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="d-flex justify-content-center my-3" data-bind="if: loading">
-            <div class="spinner-border" role="status">
-                <span class="visually-hidden">Loading...</span>
+    <!-- ko if: competition() !== null -->
+    <div class="container my-4" data-bind="with: competition">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="modalities.html">Modalities</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#" data-bind="text: Modality"></a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page" data-bind="text: Name">
+                </li>
+            </ol>
+        </nav>
+        <h1 class="display-1 border-bottom">
+            <span data-bind="text: Name"></span>
+        </h1>
+        <div
+            class="d-flex gap-3 flex-column flex-lg-row align-items-center align-items-lg-start justify-content-lg-between">
+            <img class="athlete-img" data-bind="attr:{src: Photo || 'assets/img/empty-user.webp'}">
+            <div class="w-100">
+                <h1>Participant</h1>
+                <table class="table table-striped w-100">
+                    <thead>
+                        <th>Name</th>
+                        <th>Year</th>
+                        <th>Location</th>
+                    </thead>
+                    <tbody data-bind="foreach: Participant">
+                        <tr>
+                            <td data-bind="text: Name"></td>
+                            <td data-bind="text: Year"></td>
+                            <td>
+                                <span data-bind="text: CityName"></span>,
+                                <span data-bind="text: CountryName"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
+    <!-- /ko -->
+    <!-- ko if: competition() === null -->
+    <div class="d-flex justify-content-center my-3">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <!-- /ko -->
+
     <!-- Website footer -->
     <footer class="bg-light text-center mt-auto">
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            Trabalho realizdo por João Capucho (113713) e Carolina Silva (113475) para ITW com
+            Trabalho realizado por João Capucho (113713) e Carolina Silva (113475) para ITW com
             <i class="fa fa-heart"></i>
         </div>
-    </footer>
-    <!-- Include bootstrap's JS bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
-    <!-- Include knockout.js bundle -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"
-        integrity="sha512-2AL/VEauKkZqQU9BHgnv48OhXcJPx9vdzxN1JrKDVc4FPU/MEE/BZ6d9l0mP7VmvLsjtYwqiYQpDskK9dG8KBA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="scripts/globals.js"></script>
-    <script src="scripts/competitions.js"></script>
+        </h1>
+        <!-- Include bootstrap's JS bundle -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+            crossorigin="anonymous"></script>
+        <!-- Include knockout.js bundle -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"
+            integrity="sha512-2AL/VEauKkZqQU9BHgnv48OhXcJPx9vdzxN1JrKDVc4FPU/MEE/BZ6d9l0mP7VmvLsjtYwqiYQpDskK9dG8KBA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="scripts/globals.js"></script>
+        <script src="scripts/competition.js"></script>
 </body>
 
 </html>
