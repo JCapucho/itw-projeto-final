@@ -113,18 +113,25 @@
                 <th>Name</th>
                 <th>Country</th>
                 <th>City</th>
+                <th></th>
             </thead>
             <tbody data-bind="foreach: entries">
                 <tr>
-                    <td data-bind="text: Year"></td>
+                    <th data-bind="text: Year"></th>
                     <td data-bind="text: Name"></td>
                     <td data-bind="text: CountryName"></td>
                     <td data-bind="text: CityName"></td>
+                    <td class="text-end">
+                        <a class="btn btn-primary me-2" title="View details"
+                            data-bind="attr: {href: 'game.html?id=' + Id}">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
+                    </td>
                 </tr>
             </tbody>
             <tfoot data-bind="if: needsCollapse">
                 <tr>
-                    <td colspan="4" class="text-center">
+                    <td colspan="5" class="text-center">
                         <button class="btn text-primary" data-bind="click: toggle">
                             <!-- ko if: open -->
                             <i class="fa fa-arrow-up" aria-hidden="true"></i>

@@ -84,14 +84,16 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">City</th>
-                    <th scope="col">Country</th>
+                    <th>Year</th>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>Country</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody data-bind="foreach: games">
                 <tr class="align-middle">
+                    <th data-bind="text: Year"></th>
                     <td data-bind="text: Name"></td>
                     <td data-bind="text: CityName"></td>
                     <td data-bind="text: CountryName"></td>

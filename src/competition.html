@@ -99,19 +99,18 @@
                 <h1>Appeared in</h1>
                 <table class="table table-striped w-100" data-bind="with: $root.gamesList">
                     <thead>
-                        <th>Name</th>
                         <th>Year</th>
-                        <th>Location</th>
+                        <th>Name</th>
+                        <th>Country</th>
+                        <th>City</th>
                         <th></th>
                     </thead>
                     <tbody data-bind="foreach: entries">
                         <tr class="align-middle">
+                            <th data-bind="text: Year"></th>
                             <td data-bind="text: Name"></td>
-                            <td data-bind="text: Year"></td>
-                            <td>
-                                <span data-bind="text: CityName"></span>,
-                                <span data-bind="text: CountryName"></span>
-                            </td>
+                            <td data-bind="text: CountryName"></td>
+                            <td data-bind="text: CityName"></td>,
                             <td class="text-end">
                                 <a class="btn btn-primary me-2" title="View details"
                                     data-bind="attr: {href: 'game.html?id=' + Id}">
@@ -122,7 +121,7 @@
                     </tbody>
                     <tfoot data-bind="if: needsCollapse">
                         <tr>
-                            <td colspan="4" class="text-center">
+                            <td colspan="5" class="text-center">
                                 <button class="btn text-primary" data-bind="click: toggle">
                                     <!-- ko if: open -->
                                     <i class="fa fa-arrow-up" aria-hidden="true"></i>
