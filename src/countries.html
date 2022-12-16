@@ -90,16 +90,14 @@
                 </tr>
             </thead>
             <tbody data-bind="foreach: countries">
-                <tr>
+                <tr class="align-middle">
                     <td><img data-bind="attr: {src: Flag} " style="max-height: 40px;" /></td>
                     <td data-bind="text: Name"></td>
-                    <td>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <a class="btn btn-primary" title="View details"
-                                data-bind="attr: {href: 'country.html?id=' + Id}">
-                                <i class="fa fa-eye" aria-hidden="true"></i>
-                            </a>
-                        </div>
+                    <td class="text-end">
+                        <a class="btn btn-primary me-2" title="View details"
+                            data-bind="attr: {href: 'country.html?id=' + Id}">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
                     </td>
                 </tr>
             </tbody>
