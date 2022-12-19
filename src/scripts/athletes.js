@@ -54,6 +54,8 @@ ko.bindingHandlers.formatNameSex = {
     }
 };
 
+ko.applyBindings(viewModel)
+
 $("#search").autocomplete({
     minLength: 2,
     source: async function(request, resolve) {
@@ -70,5 +72,3 @@ $("#search").autocomplete({
         window.location.href = `athlete.html?id=${ui.item.value}`;
     }
 });
-
-ko.applyBindings(viewModel)
