@@ -139,7 +139,7 @@
         </div>
 
         <h1>Games</h1>
-        <table class="mt-5 table table-striped" data-bind="with: $root.gamesList">
+        <table class="mt-3 table table-striped" data-bind="with: $root.gamesList">
             <thead>
                 <th>Year</th>
                 <th>Name</th>
@@ -152,11 +152,11 @@
                     <th data-bind="text: Year"></th>
                     <td data-bind="text: Name"></td>
                     <td data-bind="text: CountryName"></td>
-                    <td data-bind="text: CityName"></td>,
+                    <td data-bind="text: CityName"></td>
                     <td class="text-end">
                         <a class="btn btn-primary me-2" title="View details"
                             data-bind="attr: {href: 'game.html?id=' + Id}">
-                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            <i class="fa fa-external-link" aria-hidden="true"></i>
                         </a>
                     </td>
                 </tr>
@@ -193,7 +193,7 @@
                     <td class="text-end">
                         <a class="btn btn-primary me-2" title="View details"
                             data-bind="attr: {href: 'modality.html?id=' + Id}">
-                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            <i class="fa fa-external-link" aria-hidden="true"></i>
                         </a>
                     </td>
                 </tr>
@@ -232,7 +232,7 @@
                     <td class="text-end">
                         <a class="btn btn-primary me-2" title="View details"
                             data-bind="attr: {href: 'competition.html?id=' + Id}">
-                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            <i class="fa fa-external-link" aria-hidden="true"></i>
                         </a>
                     </td>
                 </tr>

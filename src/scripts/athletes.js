@@ -29,31 +29,6 @@ const viewModel = new AthletesViewModel();
 
 addInfiniteViewController(() => viewModel.loadMoreAthletes());
 
-ko.bindingHandlers.formatBestPosition = {
-    update: function(element, valueAccessor) {
-        const value = ko.unwrap(valueAccessor());
-
-        if (value > 3) return;
-
-        element.textContent = { 1: "🥇", 2: "🥈", 3: "🥉" }[value];
-    }
-};
-
-ko.bindingHandlers.formatNameSex = {
-    update: function(element, valueAccessor) {
-        const unwrapped = ko.unwrap(valueAccessor());
-        const sex = unwrapped.sex;
-        const name = unwrapped.name;
-
-        if (sex === null) return;
-
-        const iconName = sex == "M" ? "mars" : "venus";
-        const icon = `<i class="fa fa-${iconName}" aria-hidden="true"></i>`
-
-        element.innerHTML = icon + " " + name;
-    }
-};
-
 ko.applyBindings(viewModel)
 
 $("#search").autocomplete({

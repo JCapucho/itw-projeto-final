@@ -15,3 +15,7 @@ body {
 .game-cover:hover {
     transform: scale(2);
 }
+
+.gameDetails-img {
+    max-height: 200px;
+}
