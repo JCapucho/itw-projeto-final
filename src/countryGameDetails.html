@@ -77,6 +77,18 @@
 
     <!-- ko if: country() !== null && game() !== null -->
     <div class="container my-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="countries.html">Countries</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a data-bind="text: country().Name, attr: {href: 'country.html?id=' + country().Id}"></a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page" data-bind="text: game().Name">
+                </li>
+            </ol>
+        </nav>
         <h1 class="display-1 border-bottom">
             <span data-bind="text: country().Name"></span>
             -

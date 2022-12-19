@@ -77,6 +77,15 @@
 
     <!-- ko if: country() !== null -->
     <div class="container my-4" data-bind="with: country">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="countries.html">Countries</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page" data-bind="text: Name">
+                </li>
+            </ol>
+        </nav>
         <h1 class="display-1 border-bottom">
             <span data-bind="text: Name"></span>
             <span data-bind="text: IOC"></span>
