@@ -80,7 +80,7 @@ Another way is to open the command pallete (`Ctrl+Shift+P`) and open
 
 | Endpoint                         | Status | Notes                                      |
 |----------------------------------|--------|--------------------------------------------|
-| `/Statistics/Athlete_Country`    |        |                                            |
+| `/Statistics/Athlete_Country`    |  :ok:  |                                            |
 | `/Statistics/Games_Athletes`     |  :ok:  |                                            |
 | `/Statistics/Games_Competitions` |  :ok:  |                                            |
 | `/Statistics/Games_Countries`    |  :ok:  |                                            |
