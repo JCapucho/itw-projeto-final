@@ -14,6 +14,10 @@ function ModalityViewModel() {
         self.modality(data);
     }
 
+    self.modality.subscribe(function(newValue) {
+        document.title = `${newValue.Name} - ${document.title}`;
+    });
+
     loadModalityInfo();
 }
 

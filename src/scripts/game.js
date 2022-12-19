@@ -27,6 +27,10 @@ function GameViewModel() {
         self.game(data);
     }
 
+    self.game.subscribe(function(newValue) {
+        document.title = `${newValue.Name} - ${document.title}`;
+    });
+
     loadGameInfo();
 }
 

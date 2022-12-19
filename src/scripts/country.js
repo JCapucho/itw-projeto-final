@@ -15,6 +15,10 @@ function CountryViewModel() {
         self.country(data);
     }
 
+    self.country.subscribe(function(newValue) {
+        document.title = `${newValue.Name} - ${document.title}`;
+    });
+
     loadCountryInfo();
 }
 

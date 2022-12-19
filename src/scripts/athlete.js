@@ -21,6 +21,10 @@ function AthleteViewModel() {
         return sexName + " " + icon;
     }, this);
 
+    self.athlete.subscribe(function(newValue) {
+        document.title = `${newValue.Name} - ${document.title}`;
+    });
+
     async function loadAthleteInfo() {
         const response = await fetch(`${API_URL}/Athletes/FullDetails?id=${athleteId}`);
         const data = await response.json();

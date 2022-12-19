@@ -14,6 +14,10 @@ function CompetitionViewModel() {
         self.competition(data);
     }
 
+    self.competition.subscribe(function(newValue) {
+        document.title = `${newValue.Name} - ${document.title}`;
+    });
+
     loadCompetitionInfo();
 }
 
