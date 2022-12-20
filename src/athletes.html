@@ -19,12 +19,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <!-- Set the entire body to use Open Sans and fallback to sans-serif -->
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-        }
-    </style>
+    <!-- Load global stylesheet -->
+    <link href="styles/athlete.css" rel="stylesheet">
     <!-- Import FontAwesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
@@ -85,8 +81,16 @@
     <!-- END: Navigation Bar -->
 
     <div class="container">
-        <div class="border-bottom py-2">
-            <div class="ui-widget">
+        <div class="row border-bottom py-2">
+            <div class="col-4">
+                <a class="btn" title="List grid" href="#grid">
+                    <i class="fa fa-th-large" aria-hidden="true"></i>
+                </a>
+                <a class="btn" title="List view" href="#list">
+                    <i class="fa fa-list" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="ui-widget col-8">
                 <input
                     id="search"
                     class="form-control me-2"
@@ -97,6 +101,9 @@
                 >
             </div>
         </div>
+
+        <!-- START: CONTENT ZONE -->
+        <!-- ko if: view() === "list" -->
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -117,6 +124,29 @@
                 </tr>
             </tbody>
         </table>
+        <!-- /ko -->
+        <!-- ko if: view() === "grid" -->
+        <div
+            class="d-flex flex-wrap gap-3 justify-content-center my-3"
+            data-bind="foreach: athletes"
+        >
+            <div class="card justify-content-between" style="width: 13rem;">
+                <img class="card-image" data-bind="attr:{src: Photo || 'assets/img/empty-user.webp'}">
+                <div class="card-body" style="flex: 0">
+                    <h5 class="card-title" data-bind="formatNameSex: {name: Name, sex: Sex}"></h5>
+                    <div class="text-end">
+                        <span class="me-2 align-middle" data-bind="formatBestPosition: BestPosition"></span>
+                        <a class="btn btn-primary me-2" title="View details"
+                            data-bind="attr: {href: 'athlete.html?id=' + Id}">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /ko -->
+        <!-- END: CONTENT ZONE -->
+
         <div class="d-flex justify-content-center my-3" data-bind="if: loading">
             <div class="spinner-border" role="status">
                 <span class="visually-hidden">Loading...</span>

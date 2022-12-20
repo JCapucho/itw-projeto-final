@@ -39,7 +39,7 @@ Another way is to open the command pallete (`Ctrl+Shift+P`) and open
 |----------------------------------|--------|--------------------------------------------|
 | `/Athletes`                      |  :ok:  |                                            |
 | `/Athletes/{id}`                 |        | Used /Athletes/FullDetails in it's place   |
-| `/Athletes/ByIOC`                |  :ok:  |                                            |
+| `/Athletes/ByIOC`                |        |                                            |
 | `/Athletes/FullDetails`          |  :ok:  |                                            |
 | `/Athletes/SearchByName`         |  :ok:  |                                            |
 

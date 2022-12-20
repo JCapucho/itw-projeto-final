@@ -94,4 +94,23 @@ if (typeof ko === "object") {
         scope.needsCollapse = ko.computed(() => getData()?.length > limit, scope);
         return scope;
     }
+
+    function viewMode() {
+        let view = window.location.hash.slice(1);
+        if (view !== "grid" && view !== "list") {
+            view = "grid";
+            window.location.hash = view;
+        }
+        return view
+    }
+
+
+    function makeViewSelectionController() {
+        const view = ko.observable(viewMode());
+        addEventListener('hashchange', function () {
+            let newView = viewMode();
+            view(newView);
+        });
+        return view;
+    }
 }
