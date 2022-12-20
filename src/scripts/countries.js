@@ -5,6 +5,7 @@ function CountriesViewModel() {
     self.loading = ko.observable(false);
     self.finished = ko.observable(false);
     self.countries = ko.observableArray([]);
+    self.view = makeViewSelectionController();
     self.loadMoreCountries = async function () {
         if (self.loading() || self.finished()) return;
 

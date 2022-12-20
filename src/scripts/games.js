@@ -5,6 +5,7 @@ function CompetitionsViewModel() {
     self.loading = ko.observable(false);
     self.finished = ko.observable(false);
     self.games = ko.observableArray([]);
+    self.view = makeViewSelectionController();
     self.loadMoreGames = async function () {
         if (self.loading() || self.finished()) return;
 

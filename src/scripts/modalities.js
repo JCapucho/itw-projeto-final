@@ -5,6 +5,7 @@ function ModalitiesViewModel() {
     self.loading = ko.observable(false);
     self.finished = ko.observable(false);
     self.modalities = ko.observableArray([]);
+    self.view = makeViewSelectionController();
     self.loadMoreModalities = async function () {
         if (self.loading() || self.finished()) return;
 

@@ -26,3 +26,10 @@ body {
     min-width: auto;
     object-fit: cover;
 }
+
+.country-card-image {
+    height: 100px;
+    object-position: center center;
+    min-width: auto;
+    object-fit: cover;
+}
