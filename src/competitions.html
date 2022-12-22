@@ -84,10 +84,20 @@
     <div class="container">
         <div class="row border-bottom py-2">
             <div class="col-4">
-                <a class="btn" title="List grid" href="#grid">
+                <a 
+                    class="btn"
+                    data-bind="class: view() === 'grid' ? 'text-primary' : null"
+                    title="List grid"
+                    href="#grid"
+                >
                     <i class="fa fa-th-large" aria-hidden="true"></i>
                 </a>
-                <a class="btn" title="List view" href="#list">
+                <a
+                    class="btn"
+                    data-bind="class: view() === 'list' ? 'text-primary' : null"
+                    title="List view"
+                    href="#list"
+                >
                     <i class="fa fa-list" aria-hidden="true"></i>
                 </a>
             </div>
