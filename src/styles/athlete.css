@@ -27,6 +27,13 @@ body {
     object-fit: cover;
 }
 
+.mini-card-image {
+    height: 100px;
+    object-position: center top;
+    min-width: auto;
+    object-fit: cover;
+}
+
 .country-card-image {
     height: 100px;
     object-position: center center;

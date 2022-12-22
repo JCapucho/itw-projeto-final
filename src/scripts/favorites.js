@@ -1,8 +1,6 @@
 const favKey = 'favorites';
 const memStore = JSON.parse(localStorage.getItem(favKey)) || {};
 
-console.log(memStore);
-
 function isFavorite(section, id) {
     if(memStore[section] === undefined)
         return false

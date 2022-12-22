@@ -39,6 +39,13 @@ function MakeQueryablePromise(promise) {
     return result;
 }
 
+function formatNameSex(sex, name) {
+    const iconName = sex == "M" ? "mars" : "venus";
+    const icon = `<i class="fa fa-${iconName}" aria-hidden="true"></i>`
+
+    return icon + " " + name;
+}
+
 if (typeof ko === "object") {
     ko.bindingHandlers.formatDay = {
         update: function(element, valueAccessor) {
@@ -71,10 +78,7 @@ if (typeof ko === "object") {
 
             if (sex === null) return;
 
-            const iconName = sex == "M" ? "mars" : "venus";
-            const icon = `<i class="fa fa-${iconName}" aria-hidden="true"></i>`
-
-            element.innerHTML = icon + " " + name;
+            element.innerHTML = formatNameSex(sex, name);
         }
     };
 
