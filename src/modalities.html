@@ -47,7 +47,7 @@
             </button>
             <!-- START: NavBar Items -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <ul class="navbar-nav me-auto">
                     <!-- Athletes Route -->
                     <li class="nav-item">
                         <a class="nav-link" href="athletes.html"><i class="fa fa-user-o" aria-hidden="true"></i>
@@ -72,6 +72,14 @@
                     <!-- Statistics Route -->
                     <li class="nav-item">
                         <a class="nav-link" href="statistics.html"><i class="fa fa-line-chart" aria-hidden="true"></i> Statistics</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav me-2">
+                    <!-- Favorites Route -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="favorites.html">
+                            <i class="fa fa-heart text-danger" aria-hidden="true"></i>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -125,6 +133,13 @@
                 <tr class="align-middle">
                     <td data-bind="text: Name"></td>
                     <td class="text-end">
+                        <button class="btn me-1 text-danger" data-bind="click: $root.toggleFavorite">
+                            <i
+                                class="fa"
+                                data-bind="class: isFavorite() ? 'fa-heart' : 'fa-heart-o'"
+                                aria-hidden="true"
+                            ></i>
+                        </button>
                         <a class="btn btn-primary me-2" title="View details"
                             data-bind="attr: {href: 'modality.html?id=' + Id}">
                             <i class="fa fa-eye" aria-hidden="true"></i>
@@ -144,6 +159,13 @@
                 <div class="card-body" style="flex: 0">
                     <h5 class="card-title" data-bind="text: Name"></h5>
                     <div class="text-end">
+                        <button class="btn me-1 text-danger" data-bind="click: $root.toggleFavorite">
+                            <i
+                                class="fa"
+                                data-bind="class: isFavorite() ? 'fa-heart' : 'fa-heart-o'"
+                                aria-hidden="true"
+                            ></i>
+                        </button>
                         <a class="btn btn-primary" title="View details"
                             data-bind="attr: {href: 'modality.html?id=' + Id}">
                             <i class="fa fa-eye" aria-hidden="true"></i>
@@ -186,6 +208,7 @@
         integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="scripts/globals.js"></script>
+    <script src="scripts/favorites.js"></script>
     <script src="scripts/modalities.js"></script>
 </body>
 

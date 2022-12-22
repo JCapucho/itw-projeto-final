@@ -1,3 +1,5 @@
+const favoritesSection = "modalities";
+
 function ModalitiesViewModel() {
     const self = this;
 
@@ -16,12 +18,14 @@ function ModalitiesViewModel() {
         const params = new URLSearchParams({ page, pagesize: 50 });
         const response = await fetch(`${API_URL}/Modalities?` + params);
         const data = await response.json();
-        self.modalities(self.modalities().concat(data.Records));
+        const extendedRecords = data.Records.map(favoriteAdapter(favoritesSection));
+        self.modalities(self.modalities().concat(extendedRecords));
 
         self.page(page + 1);
         self.loading(false);
         self.finished(!data.HasNext);
     }
+    self.toggleFavorite = favoriteToggle(favoritesSection);
 
     self.loadMoreModalities();
 }

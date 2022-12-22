@@ -1,3 +1,5 @@
+const favoritesSection = "countries";
+
 function CountriesViewModel() {
     const self = this;
 
@@ -16,12 +18,14 @@ function CountriesViewModel() {
         const params = new URLSearchParams({ page, pagesize: 50 });
         const response = await fetch(`${API_URL}/Countries?` + params);
         const data = await response.json();
-        self.countries(self.countries().concat(data.Records));
+        const extendedRecords = data.Records.map(favoriteAdapter(favoritesSection));
+        self.countries(self.countries().concat(extendedRecords));
 
         self.page(page + 1);
         self.loading(false);
         self.finished(!data.HasNext);
     }
+    self.toggleFavorite = favoriteToggle(favoritesSection);
 
     self.loadMoreCountries();
 }

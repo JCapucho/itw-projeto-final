@@ -1,3 +1,5 @@
+const favoritesSection = "athletes";
+
 function AthletesViewModel() {
     const self = this;
 
@@ -16,12 +18,14 @@ function AthletesViewModel() {
         const params = new URLSearchParams({ page, pagesize: 50 });
         const response = await fetch(`${API_URL}/Athletes?` + params);
         const data = await response.json();
-        self.athletes(self.athletes().concat(data.Records));
+        const extendedRecords = data.Records.map(favoriteAdapter(favoritesSection));
+        self.athletes(self.athletes().concat(extendedRecords));
 
         self.page(page + 1);
         self.loading(false);
         self.finished(!data.HasNext);
     }
+    self.toggleFavorite = favoriteToggle(favoritesSection);
 
     self.loadMoreAthletes();
 }

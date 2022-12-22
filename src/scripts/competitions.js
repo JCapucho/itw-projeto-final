@@ -1,3 +1,5 @@
+const favoritesSection = "competitions";
+
 function CompetitionsViewModel() {
     const self = this;
 
@@ -16,12 +18,14 @@ function CompetitionsViewModel() {
         const params = new URLSearchParams({ page, pagesize: 50 });
         const response = await fetch(`${API_URL}/Competitions?` + params);
         const data = await response.json();
-        self.competitions(self.competitions().concat(data.Records));
+        const extendedRecords = data.Records.map(favoriteAdapter(favoritesSection));
+        self.competitions(self.competitions().concat(extendedRecords));
 
         self.page(page + 1);
         self.loading(false);
         self.finished(!data.HasNext);
     }
+    self.toggleFavorite = favoriteToggle(favoritesSection);
 
     self.loadMoreCompetitions();
 }
