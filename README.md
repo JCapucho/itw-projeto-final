@@ -86,3 +86,9 @@ Another way is to open the command pallete (`Ctrl+Shift+P`) and open
 | `/Statistics/Games_Countries`    |  :ok:  |                                            |
 | `/Statistics/Games_Modalities`   |  :ok:  |                                            |
 | `/Statistics/Medals_Country`     |        |                                            |
+
+### Utils
+
+| Endpoint                         | Status | Notes                                      |
+|----------------------------------|--------|--------------------------------------------|
+| `/Utils/Search`                  |        |                                            |
