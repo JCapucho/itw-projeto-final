@@ -40,3 +40,9 @@ body {
     min-width: auto;
     object-fit: cover;
 }
+
+.details-chart {
+    max-width: 400px;
+    max-height: 400px;
+    margin: 0 auto;
+}

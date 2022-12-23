@@ -91,4 +91,4 @@ Another way is to open the command pallete (`Ctrl+Shift+P`) and open
 
 | Endpoint                         | Status | Notes                                      |
 |----------------------------------|--------|--------------------------------------------|
-| `/Utils/Search`                  |        |                                            |
+| `/Utils/Search`                  |  :ok:  | Missing version for all editions           |
