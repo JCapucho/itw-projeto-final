@@ -117,4 +117,53 @@ if (typeof ko === "object") {
         });
         return view;
     }
+
+    function createListLoader(
+        target,
+        endpoint,
+        { extraParams = null, favoriteExtended = true } = {}
+    ) {
+        const scope = {};
+
+        scope.endpoint = endpoint;
+        scope.extraParams = extraParams;
+
+        scope.page = 1;
+        scope.finished = false;
+        scope.loading = ko.observable(false);
+        scope.totalEntries = ko.observable("??");
+
+        scope.loadMore = async function() {
+            if (scope.loading() || scope.finished) return;
+
+            scope.loading(true);
+
+            let paramsObj = { page: scope.page, pagesize: 50 };
+            if(scope.extraParams)
+                paramsObj = {...paramsObj, ...scope.extraParams}
+
+            const params = new URLSearchParams(paramsObj);
+            const response = await fetch(`${API_URL}/${scope.endpoint}?` + params);
+            const data = await response.json();
+            let records = data.Records;
+
+            if (favoriteExtended)
+                records = records.map(favoriteAdapter(favoritesSection));
+
+            target(target().concat(records));
+
+            scope.totalEntries(data.TotalRecords);
+            scope.finished = !data.HasNext;
+            scope.loading(false);
+            scope.page++;
+        }
+
+        scope.reset = function() {
+            scope.page = 1;
+            scope.finished = false;
+            target([]);
+        }
+
+        return scope;
+    }
 }
