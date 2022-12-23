@@ -14,12 +14,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <!-- Set the entire body to use Open Sans and fallback to sans-serif -->
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-        }
-    </style>
+    <!-- Include the athlete's css stylesheet -->
+    <link href="styles/athlete.css" rel="stylesheet">
     <!-- Import FontAwesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
@@ -88,52 +84,106 @@
     <!-- END: Navigation Bar -->
 
     <div class="container my-5">
-        <p>
-            In this page it's possible to explore how the olympic games evolved in time by selecting one of the
-            avaliables categories. These will show how many items were present in a given edition both for winter and
-            summer games.
-        </p>
-        <!-- START: Tabbed content -->
-        <ul class="nav nav-tabs mt-5" id="statTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="countries-tab" data-bs-toggle="tab"
-                    data-bs-target="#countries-tab-pane" type="button" role="tab" aria-controls="countries-tab-pane"
-                    aria-selected="true">Countries</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="athletes-tab" data-bs-toggle="tab" data-bs-target="#athletes-tab-pane"
-                    type="button" role="tab" aria-controls="athletes-tab-pane" aria-selected="false">Athletes</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="modalities-tab" data-bs-toggle="tab" data-bs-target="#modalities-tab-pane"
-                    type="button" role="tab" aria-controls="modalities-tab-pane"
-                    aria-selected="false">Modalities</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="competitions-tab" data-bs-toggle="tab"
-                    data-bs-target="#competitions-tab-pane" type="button" role="tab"
-                    aria-controls="competitions-tab-pane" aria-selected="false">Competitions</button>
-            </li>
-        </ul>
-        <div class="tab-content" id="statTabContent">
-            <div class="tab-pane fade show active" id="countries-tab-pane" role="tabpanel"
-                aria-labelledby="countries-tab" tabindex="0">
-                <canvas id="countryPerGameChart"></canvas>
+        <div class="row g-5">
+            <div class="col-12 col-xl-6">
+                <h1>Games evolution</h1>
+                <p>
+                    In this section it's possible to explore how the olympic games evolved in time by selecting one of the
+                    avaliables categories. These will show how many items were present in a given edition both for winter and
+                    summer games.
+                </p>
+                <!-- START: Tabbed content -->
+                <ul class="nav nav-tabs mt-5" id="statTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="countries-tab" data-bs-toggle="tab"
+                            data-bs-target="#countries-tab-pane" type="button" role="tab" aria-controls="countries-tab-pane"
+                            aria-selected="true">Countries</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="athletes-tab" data-bs-toggle="tab" data-bs-target="#athletes-tab-pane"
+                            type="button" role="tab" aria-controls="athletes-tab-pane" aria-selected="false">Athletes</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="modalities-tab" data-bs-toggle="tab" data-bs-target="#modalities-tab-pane"
+                            type="button" role="tab" aria-controls="modalities-tab-pane"
+                            aria-selected="false">Modalities</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="competitions-tab" data-bs-toggle="tab"
+                            data-bs-target="#competitions-tab-pane" type="button" role="tab"
+                            aria-controls="competitions-tab-pane" aria-selected="false">Competitions</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="statTabContent">
+                    <div class="tab-pane fade show active" id="countries-tab-pane" role="tabpanel"
+                        aria-labelledby="countries-tab" tabindex="0">
+                        <canvas id="countryPerGameChart"></canvas>
+                    </div>
+                    <div class="tab-pane fade" id="athletes-tab-pane" role="tabpanel" aria-labelledby="athletes-tab"
+                        tabindex="0">
+                        <canvas id="athletesPerGameChart"></canvas>
+                    </div>
+                    <div class="tab-pane fade" id="modalities-tab-pane" role="tabpanel" aria-labelledby="modalities-tab"
+                        tabindex="0">
+                        <canvas id="modalityPerGameChart"></canvas>
+                    </div>
+                    <div class="tab-pane fade" id="competitions-tab-pane" role="tabpanel" aria-labelledby="competitions-tab"
+                        tabindex="0">
+                        <canvas id="competitionPerGameChart"></canvas>
+                    </div>
+                </div>
+                <!-- END: Tabbed content -->
             </div>
-            <div class="tab-pane fade" id="athletes-tab-pane" role="tabpanel" aria-labelledby="athletes-tab"
-                tabindex="0">
-                <canvas id="athletesPerGameChart"></canvas>
-            </div>
-            <div class="tab-pane fade" id="modalities-tab-pane" role="tabpanel" aria-labelledby="modalities-tab"
-                tabindex="0">
-                <canvas id="modalityPerGameChart"></canvas>
-            </div>
-            <div class="tab-pane fade" id="competitions-tab-pane" role="tabpanel" aria-labelledby="competitions-tab"
-                tabindex="0">
-                <canvas id="competitionPerGameChart"></canvas>
+
+            <div class="col-12 col-xl-6">
+                <h1>Countries with medals</h1>
+                <p>
+                    In this section it's possible to see which country has the most medals in total
+                    or of a specific kind: gold, silver and bronze.
+                </p>
+                    <!-- START: Tabbed content -->
+                    <ul class="nav nav-tabs" id="statTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="total-tab" data-bs-toggle="tab"
+                                data-bs-target="#total-tab-pane" type="button" role="tab" aria-controls="total-tab-pane"
+                                aria-selected="true">Total</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="gold-tab" data-bs-toggle="tab" data-bs-target="#gold-tab-pane"
+                                type="button" role="tab" aria-controls="gold-tab-pane" aria-selected="false">Gold</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="silver-tab" data-bs-toggle="tab" data-bs-target="#silver-tab-pane"
+                                type="button" role="tab" aria-controls="silver-tab-pane"
+                                aria-selected="false">Silver</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="bronze-tab" data-bs-toggle="tab"
+                                data-bs-target="#bronze-tab-pane" type="button" role="tab"
+                                aria-controls="bronze-tab-pane" aria-selected="false">Bronze</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="statTabContent">
+                        <div class="tab-pane fade show active details-chart" id="total-tab-pane" role="tabpanel"
+                            aria-labelledby="total-tab" tabindex="0">
+                            <canvas id="totalChart"></canvas>
+                        </div>
+                        <div class="tab-pane fade details-chart" id="gold-tab-pane" role="tabpanel" aria-labelledby="gold-tab"
+                            tabindex="0">
+                            <canvas id="goldChart"></canvas>
+                        </div>
+                        <div class="tab-pane fade details-chart" id="silver-tab-pane" role="tabpanel" aria-labelledby="silver-tab"
+                            tabindex="0">
+                            <canvas id="silverChart"></canvas>
+                        </div>
+                        <div class="tab-pane fade details-chart" id="bronze-tab-pane" role="tabpanel" aria-labelledby="bronze-tab"
+                            tabindex="0">
+                            <canvas id="bronzeChart"></canvas>
+                        </div>
+                    </div>
+                    <!-- END: Tabbed content -->
             </div>
         </div>
-        <!-- END: Tabbed content -->
     </div>
 
     <!-- Website footer -->
@@ -153,6 +203,7 @@
         integrity="sha512-HyprZz2W40JOnIBIXDYHCFlkSscDdYaNe2FYl34g1DOmE9J+zEPoT4HHHZ2b3+milFBtiKVWb4sorDVVp+iuqA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="scripts/globals.js"></script>
+    <script src="scripts/charts.js"></script>
     <script src="scripts/statistics.js"></script>
 </body>
 

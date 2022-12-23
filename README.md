@@ -85,10 +85,10 @@ Another way is to open the command pallete (`Ctrl+Shift+P`) and open
 | `/Statistics/Games_Competitions` |  :ok:  |                                            |
 | `/Statistics/Games_Countries`    |  :ok:  |                                            |
 | `/Statistics/Games_Modalities`   |  :ok:  |                                            |
-| `/Statistics/Medals_Country`     |        |                                            |
+| `/Statistics/Medals_Country`     |  :ok:  |                                            |
 
 ### Utils
 
 | Endpoint                         | Status | Notes                                      |
 |----------------------------------|--------|--------------------------------------------|
-| `/Utils/Search`                  |  :ok:  | Missing version for all editions           |
+| `/Utils/Search`                  |        |                                            |

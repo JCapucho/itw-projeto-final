@@ -30,7 +30,10 @@ function filterData(sortedData, predicate) {
     return results;
 }
 
-function buildWinterSummerChart(chartId, title, data) {
+async function buildWinterSummerChart(chartId, title, endpoint) {
+    const response = await fetch(`${API_URL}/${endpoint}`);
+    const data = await response.json();
+
     const sortedData = data.sort((a, b) => a.Year - b.Year);
     const labels = [...new Set(sortedData.map(record => record.Year))];
 
@@ -84,35 +87,19 @@ function buildWinterSummerChart(chartId, title, data) {
     );
 }
 
-async function loadAthletesPerGameChartData() {
-    const response = await fetch(`${API_URL}/Statistics/Games_Athletes`);
-    const data = await response.json();
+buildWinterSummerChart('athletesPerGameChart', 'Athletes per game', 'Statistics/Games_Athletes');
+buildWinterSummerChart('competitionPerGameChart', 'Competitions per game', 'Statistics/Games_Competitions');
+buildWinterSummerChart('countryPerGameChart', 'Countries per game', 'Statistics/Games_Countries');
+buildWinterSummerChart('modalityPerGameChart', 'Modalities per game', 'Statistics/Games_Modalities');
 
-    buildWinterSummerChart('athletesPerGameChart', 'Athletes per game', data);
+async function buildMedalsCharts() {
+    const response = await fetch(`${API_URL}/Statistics/Medals_Country`);
+    const res_data = await response.json();
+
+    buildMedalChart("totalChart", res_data);
+    buildMedalChart("goldChart", res_data, record => record.MedalId === 1);
+    buildMedalChart("silverChart", res_data, record => record.MedalId === 2);
+    buildMedalChart("bronzeChart", res_data, record => record.MedalId === 3);
 }
 
-async function loadCompetitionsPerGameChartData() {
-    const response = await fetch(`${API_URL}/Statistics/Games_Competitions`);
-    const data = await response.json();
-
-    buildWinterSummerChart('competitionPerGameChart', 'Competitions per game', data);
-}
-
-async function loadCountriesPerGameChartData() {
-    const response = await fetch(`${API_URL}/Statistics/Games_Countries`);
-    const data = await response.json();
-
-    buildWinterSummerChart('countryPerGameChart', 'Countries per game', data);
-}
-
-async function loadModalitiesPerGameChartData() {
-    const response = await fetch(`${API_URL}/Statistics/Games_Modalities`);
-    const data = await response.json();
-
-    buildWinterSummerChart('modalityPerGameChart', 'Modalities per game', data);
-}
-
-loadCountriesPerGameChartData();
-loadAthletesPerGameChartData();
-loadModalitiesPerGameChartData();
-loadCompetitionsPerGameChartData();
+buildMedalsCharts()
