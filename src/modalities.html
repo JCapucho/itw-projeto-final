@@ -90,7 +90,10 @@
 
     <div class="container">
         <div class="row border-bottom py-2">
-            <div class="col-4">
+            <div class="col-8 col-md-4 my-auto">
+                Found <span data-bind="text: loader.totalEntries"></span> entries
+            </div>
+            <div class="col-4 col-md-2 text-end text-lg-center">
                 <a 
                     class="btn"
                     data-bind="class: view() === 'grid' ? 'text-primary' : null"
@@ -108,7 +111,7 @@
                     <i class="fa fa-list" aria-hidden="true"></i>
                 </a>
             </div>
-            <div class="ui-widget col-8">
+            <div class="col-12 col-md-6 ui-widget">
                 <input
                     id="search"
                     class="form-control me-2"
@@ -177,7 +180,7 @@
         <!-- /ko -->
         <!-- END: CONTENT ZONE -->
 
-        <div class="d-flex justify-content-center my-3" data-bind="if: loading">
+        <div class="d-flex justify-content-center my-3" data-bind="if: loader.loading">
             <div class="spinner-border" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>

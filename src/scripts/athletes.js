@@ -9,15 +9,11 @@ function AthletesViewModel() {
 
     self.athletes = ko.observableArray([]);
 
-    self.loader = createListLoader(self.athletes, "Athletes");
+    self.loader = createListLoader(self.athletes, "Athletes", favoritesSection);
     self.toggleFavorite = favoriteToggle(favoritesSection);
-
-    self.loader.loadMore();
 }
 
 const viewModel = new AthletesViewModel();
-
-addInfiniteViewController(() => viewModel.loader.loadMore());
 
 ko.applyBindings(viewModel)
 

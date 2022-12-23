@@ -3,38 +3,15 @@ const favoritesSection = "games";
 function CompetitionsViewModel() {
     const self = this;
 
-    self.page = ko.observable(1);
-    self.loading = ko.observable(false);
-    self.finished = ko.observable(false);
-    self.games = ko.observableArray([]);
     self.view = makeViewSelectionController();
-    self.loadMoreGames = async function () {
-        if (self.loading() || self.finished()) return;
 
-        self.loading(true);
+    self.games = ko.observableArray([]);
 
-        const page = self.page()
-
-        const params = new URLSearchParams({ page, pagesize: 50 });
-        const response = await fetch(`${API_URL}/Games?` + params);
-        const data = await response.json();
-        const extendedRecords = data.Records.map(favoriteAdapter(favoritesSection));
-        self.games(self.games().concat(extendedRecords));
-
-        self.page(page + 1);
-        self.loading(false);
-        self.finished(!data.HasNext);
-    }
+    self.loader = createListLoader(self.games, "Games", favoritesSection);
     self.toggleFavorite = favoriteToggle(favoritesSection);
-
-    self.loadMoreGames();
 }
 
-const viewModel = new CompetitionsViewModel();
-
-addInfiniteViewController(() => viewModel.loadMoreGames());
-
-ko.applyBindings(viewModel)
+ko.applyBindings(new CompetitionsViewModel())
 
 $("#search").autocomplete({
     minLength: 2,

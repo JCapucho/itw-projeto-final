@@ -3,38 +3,15 @@ const favoritesSection = "countries";
 function CountriesViewModel() {
     const self = this;
 
-    self.page = ko.observable(1);
-    self.loading = ko.observable(false);
-    self.finished = ko.observable(false);
-    self.countries = ko.observableArray([]);
     self.view = makeViewSelectionController();
-    self.loadMoreCountries = async function () {
-        if (self.loading() || self.finished()) return;
 
-        self.loading(true);
+    self.countries = ko.observableArray([]);
 
-        const page = self.page()
-
-        const params = new URLSearchParams({ page, pagesize: 50 });
-        const response = await fetch(`${API_URL}/Countries?` + params);
-        const data = await response.json();
-        const extendedRecords = data.Records.map(favoriteAdapter(favoritesSection));
-        self.countries(self.countries().concat(extendedRecords));
-
-        self.page(page + 1);
-        self.loading(false);
-        self.finished(!data.HasNext);
-    }
+    self.loader = createListLoader(self.countries, "Countries", favoritesSection);
     self.toggleFavorite = favoriteToggle(favoritesSection);
-
-    self.loadMoreCountries();
 }
 
-const viewModel = new CountriesViewModel();
-
-addInfiniteViewController(() => viewModel.loadMoreCountries());
-
-ko.applyBindings(viewModel)
+ko.applyBindings(new CountriesViewModel())
 
 $("#search").autocomplete({
     minLength: 2,

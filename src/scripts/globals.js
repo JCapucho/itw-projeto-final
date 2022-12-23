@@ -103,7 +103,7 @@ if (typeof ko === "object") {
         let view = window.location.hash.slice(1);
         if (view !== "grid" && view !== "list") {
             view = "grid";
-            window.location.hash = view;
+            history.replaceState('', '', `#${view}`);
         }
         return view
     }
@@ -121,7 +121,8 @@ if (typeof ko === "object") {
     function createListLoader(
         target,
         endpoint,
-        { extraParams = null, favoriteExtended = true } = {}
+        favoritesSection,
+        { extraParams = null, favoriteExtended = true, infinityView = true } = {}
     ) {
         const scope = {};
 
@@ -163,6 +164,11 @@ if (typeof ko === "object") {
             scope.finished = false;
             target([]);
         }
+
+        if(infinityView)
+            addInfiniteViewController(() => scope.loadMore());
+        
+        scope.loadMore();
 
         return scope;
     }
