@@ -122,10 +122,17 @@ if (typeof ko === "object") {
         target,
         endpoint,
         favoritesSection,
-        { extraParams = null, favoriteExtended = true, infinityView = true } = {}
+        { 
+            extraParams = null,
+            favoriteExtended = true,
+            infinityView = true,
+            pagesize = 50
+        } = {}
     ) {
         const scope = {};
 
+        scope.searching = false;
+        scope.searchEntries = [];
         scope.endpoint = endpoint;
         scope.extraParams = extraParams;
 
@@ -134,12 +141,23 @@ if (typeof ko === "object") {
         scope.loading = ko.observable(false);
         scope.totalEntries = ko.observable("??");
 
-        scope.loadMore = async function() {
-            if (scope.loading() || scope.finished) return;
+        function loadMoreSearch() {
+            let records = scope.searchEntries.slice(
+                (scope.page - 1) * pagesize,
+                scope.page * pagesize
+            );
 
-            scope.loading(true);
+            if (favoriteExtended)
+                records = records.map(favoriteAdapter(favoritesSection));
 
-            let paramsObj = { page: scope.page, pagesize: 50 };
+            target(target().concat(records));
+
+            scope.totalEntries(scope.searchEntries.length);
+            scope.finished = self.page * pagesize > scope.searchEntries.length;
+        }
+
+        async function loadMoreApi() {
+            let paramsObj = { page: scope.page, pagesize };
             if(scope.extraParams)
                 paramsObj = {...paramsObj, ...scope.extraParams}
 
@@ -155,6 +173,18 @@ if (typeof ko === "object") {
 
             scope.totalEntries(data.TotalRecords);
             scope.finished = !data.HasNext;
+        }
+
+        scope.loadMore = async function() {
+            if (scope.loading() || scope.finished) return;
+
+            scope.loading(true);
+
+            if (scope.searching)
+                loadMoreSearch();
+            else
+                await loadMoreApi();
+
             scope.loading(false);
             scope.page++;
         }
@@ -167,7 +197,7 @@ if (typeof ko === "object") {
 
         if(infinityView)
             addInfiniteViewController(() => scope.loadMore());
-        
+
         scope.loadMore();
 
         return scope;
