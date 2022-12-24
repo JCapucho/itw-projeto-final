@@ -20,6 +20,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Import LeafletJS's stylesheet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        #map { height: 600px; }
+    </style>
     <!-- Set the favicon to our custom one -->
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -100,48 +107,54 @@
                     <!-- ko if: Sex !== null -->
                     <tr>
                         <th scope="row">Sex</th>
-                        <td data-bind="html: $root.sexIcon"></td>
+                        <td colspan="2" data-bind="html: $root.sexIcon"></td>
                     </tr>
                     <!-- /ko -->
                     <!-- ko if: BornDate !== null -->
                     <tr>
                         <th scope="row">Date of birth</th>
-                        <td data-bind="formatDay: BornDate"></td>
+                        <td colspan="2" data-bind="formatDay: BornDate"></td>
                     </tr>
                     <!-- /ko -->
                     <!-- ko if: BornPlace !== null -->
-                    <tr>
+                    <tr class="align-middle">
                         <th scope="row">Place of birth</th>
                         <td data-bind="text: BornPlace"></td>
+                        <td class="text-end">
+                            <button class="btn btn-primary me-2" title="View on a map"
+                                data-bs-toggle="modal" data-bs-target="#mapModal">
+                                <i class="fa fa-map" aria-hidden="true"></i>
+                            </button>
+                        </td>
                     </tr>
                     <!-- /ko -->
                     <!-- ko if: DiedDate !== null -->
                     <tr>
                         <th scope="row">Date of death</th>
-                        <td data-bind="formatDay: DiedDate"></td>
+                        <td colspan="2" data-bind="formatDay: DiedDate"></td>
                     </tr>
                     <!-- /ko -->
                     <!-- ko if: DiedPlace !== null -->
                     <tr>
                         <th scope="row">Place of death</th>
-                        <td data-bind="text: DiedPlace"></td>
+                        <td colspan="2" data-bind="text: DiedPlace"></td>
                     </tr>
                     <!-- /ko -->
                     <!-- ko if: Height !== null && Height !== 'NA' -->
                     <tr>
                         <th scope="row">Height (cm)</th>
-                        <td data-bind="text: Height"></td>
+                        <td colspan="2" data-bind="text: Height"></td>
                     </tr>
                     <!-- /ko -->
                     <!-- ko if: Weight !== null && Weight !== 'NA' -->
                     <tr>
                         <th scope="row">Weight (kg)</th>
-                        <td data-bind="text: Weight"></td>
+                        <td colspan="2" data-bind="text: Weight"></td>
                     </tr>
                     <!-- /ko -->
                     <!-- ko if: OlympediaLink !== null -->
                     <tr>
-                        <td colspan="2" class="text-center">
+                        <td colspan="3" class="text-center">
                             <a data-bind="attr: {href: OlympediaLink}" class="link-primary">
                                 See on olympedia <i class="fa fa-external-link" aria-hidden="true"></i>
                             </a>
@@ -272,7 +285,24 @@
         </table>
     </div>
 
+    <!-- START: Map modal -->
+    <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="photoModalLabel">Map</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Map modal -->
     <!-- /ko -->
+
     <!-- ko if: athlete() === null -->
     <div class="d-flex justify-content-center my-3">
         <div class="spinner-border" role="status">
@@ -295,6 +325,10 @@
     <!-- Include knockout.js bundle -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"
         integrity="sha512-2AL/VEauKkZqQU9BHgnv48OhXcJPx9vdzxN1JrKDVc4FPU/MEE/BZ6d9l0mP7VmvLsjtYwqiYQpDskK9dG8KBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Include LeafLetJS bundle -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="scripts/globals.js"></script>
     <script src="scripts/athlete.js"></script>

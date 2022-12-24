@@ -1,5 +1,32 @@
 const athleteId = new URLSearchParams(window.location.search).get("id");
 
+async function loadMap(place) {
+    const params = new URLSearchParams({ q: place, format: "json" });
+    const response = await fetch("https://nominatim.openstreetmap.org/search?" + params);
+    const data = await response.json();
+
+    const result = data[0];
+
+    const lat = result.lat;
+    const lon = result.lon;
+
+    const map = L.map('map').setView([lat, lon], 13);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    const marker = L.marker([lat, lon]).addTo(map);
+
+    marker.bindPopup(place).openPopup();
+
+    document.getElementById("mapModal").addEventListener('shown.bs.modal', function() {
+        setTimeout(function() {
+            map.invalidateSize();
+        }, 10);
+    });
+}
+
 function AthleteViewModel() {
     const self = this;
 
@@ -30,6 +57,8 @@ function AthleteViewModel() {
         const data = await response.json();
         console.log(data);
         self.athlete(data);
+
+        if(data.BornPlace) loadMap(data.BornPlace);
     }
 
     loadAthleteInfo();
