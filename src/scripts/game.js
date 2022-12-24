@@ -10,6 +10,33 @@ async function loadChartData() {
     buildMedalChart("bronzeChart", res_data, record => record.MedalId === 3);
 }
 
+async function loadMap(city, country) {
+    const params = new URLSearchParams({ city, country, format: "json" });
+    const response = await fetch("https://nominatim.openstreetmap.org/search?" + params);
+    const data = await response.json();
+
+    const result = data[0];
+
+    const lat = result.lat;
+    const lon = result.lon;
+
+    const map = L.map('map').setView([lat, lon], 13);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    const marker = L.marker([lat, lon]).addTo(map);
+
+    marker.bindPopup(`${city}, ${country}`).openPopup();
+
+    document.getElementById("mapModal").addEventListener('shown.bs.modal', function() {
+        setTimeout(function() {
+            map.invalidateSize();
+        }, 10);
+    });
+}
+
 function GameViewModel() {
     const self = this;
 
@@ -35,7 +62,9 @@ function GameViewModel() {
         const data = await response.json();
         console.log(data);
         self.game(data);
+
         loadChartData();
+        loadMap(data.City, data.CountryName)
     }
 
     self.game.subscribe(function(newValue) {

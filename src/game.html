@@ -20,6 +20,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Import LeafletJS's stylesheet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        #map { height: 600px; }
+    </style>
     <!-- Set the favicon to our custom one -->
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -102,22 +109,28 @@
                 <table class="table table-striped w-100">
                     <tr>
                         <th scope="row">Year</th>
-                        <td data-bind="text: Year"></td>
+                        <td colspan="2" data-bind="text: Year"></td>
                     </tr>
-                    <tr>
+                    <tr class="align-middle">
                         <th scope="row">City</th>
                         <td data-bind="text: City"></td>
+                        <td class="text-end">
+                            <button class="btn btn-primary me-2" title="View on a map"
+                                data-bs-toggle="modal" data-bs-target="#mapModal">
+                                <i class="fa fa-map" aria-hidden="true"></i>
+                            </button>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">Country</th>
-                        <td data-bind="text: CountryName"></td>
+                        <td colspan="2" data-bind="text: CountryName"></td>
                     </tr>
                     <tr>
                         <th scope="row">Season</th>
-                        <td data-bind="html: $root.seasonIcon"></td>
+                        <td colspan="2" data-bind="html: $root.seasonIcon"></td>
                     </tr>
                     <tr>
-                        <td colspan="2" class="text-center">
+                        <td colspan="3" class="text-center">
                             <img class="game-cover" data-bind="attr:{src: Photo || 'assets/img/empty-user.webp'}"
                                 data-bs-toggle="modal" data-bs-target="#photoModal">
                         </td>
@@ -253,6 +266,7 @@
             </div>
         </div>
     </div>
+
     <!-- START: Photo modal -->
     <div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel"
         aria-hidden="true">
@@ -269,6 +283,23 @@
         </div>
     </div>
     <!-- END: Photo modal -->
+
+    <!-- START: Map modal -->
+    <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="photoModalLabel">Map</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Map modal -->
     <!-- /ko -->
 
     <!-- ko if: game() === null -->
@@ -297,6 +328,10 @@
     <!-- Include Chart.js bundle -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.umd.min.js"
         integrity="sha512-HyprZz2W40JOnIBIXDYHCFlkSscDdYaNe2FYl34g1DOmE9J+zEPoT4HHHZ2b3+milFBtiKVWb4sorDVVp+iuqA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Include LeafLetJS bundle -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="scripts/globals.js"></script>
     <script src="scripts/charts.js"></script>
