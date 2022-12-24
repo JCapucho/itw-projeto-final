@@ -81,3 +81,10 @@ body {
     z-index: 10;
 }
 
+
+.ui-autocomplete {
+    border: var(--bs-border-width) solid var(--bs-border-color-translucent) !important;
+    color: var(--bs-secondary-color);
+    background-color: var(--bs-body-bg);
+    border-radius: var(--bs-border-radius);
+}
