@@ -46,3 +46,38 @@ body {
     max-height: 400px;
     margin: 0 auto;
 }
+
+.about-card-image {
+    height: 500px;
+    max-width: 300px;
+
+    position: relative;
+
+    transition: all 200ms ease-in-out;
+}
+
+.about-card-image>img {
+    width: 100%;
+    height: 100%;
+
+    object-position: center top;
+    object-fit: cover;
+
+    border-radius: 12px;
+    box-shadow: 0 5px 5px rgba(150,170,180,0.5);
+}
+
+.about-card-image>h2 {
+    position: absolute;
+    bottom: 5%;
+    width: 100%;
+    text-align: center;
+    font-weight: bolder;
+    text-shadow: #558ABB 1px 0 10px;
+}
+
+.about-card-image:hover {
+    transform: scale(1.2);
+    z-index: 10;
+}
+
