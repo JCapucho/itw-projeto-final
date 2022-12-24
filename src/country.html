@@ -20,6 +20,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Import LeafletJS's stylesheet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        #map { height: 600px; }
+    </style>
     <!-- Set the favicon to our custom one -->
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -103,6 +110,13 @@
         <h1 class="display-1 border-bottom">
             <span data-bind="text: Name"></span>
             <span data-bind="text: IOC"></span>
+
+            <span class="float-end me-2">
+                <button class="btn btn-primary btn-lg" title="View on a map"
+                    data-bs-toggle="modal" data-bs-target="#mapModal">
+                    <i class="fa fa-map" aria-hidden="true"></i>
+                </button>
+            </span>
         </h1>
         <div
             class="d-flex gap-3 flex-column flex-lg-row align-items-center align-items-lg-start justify-content-lg-between">
@@ -223,7 +237,24 @@
         </table>
     </div>
 
+    <!-- START: Map modal -->
+    <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="photoModalLabel">Map</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Map modal -->
     <!-- /ko -->
+
     <!-- ko if: country() === null -->
     <div class="d-flex justify-content-center my-3">
         <div class="spinner-border" role="status">
@@ -238,17 +269,21 @@
             Trabalho realizado por João Capucho (113713) e Carolina Silva (113475) para ITW com
             <i class="fa fa-heart"></i>
         </div>
-        <!-- Include bootstrap's JS bundle -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-            crossorigin="anonymous"></script>
-        <!-- Include knockout.js bundle -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"
-            integrity="sha512-2AL/VEauKkZqQU9BHgnv48OhXcJPx9vdzxN1JrKDVc4FPU/MEE/BZ6d9l0mP7VmvLsjtYwqiYQpDskK9dG8KBA=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="scripts/globals.js"></script>
-        <script src="scripts/country.js"></script>
     </footer>
+    <!-- Include bootstrap's JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <!-- Include knockout.js bundle -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"
+        integrity="sha512-2AL/VEauKkZqQU9BHgnv48OhXcJPx9vdzxN1JrKDVc4FPU/MEE/BZ6d9l0mP7VmvLsjtYwqiYQpDskK9dG8KBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Include LeafLetJS bundle -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="scripts/globals.js"></script>
+    <script src="scripts/country.js"></script>
 </body>
 
 </html>
