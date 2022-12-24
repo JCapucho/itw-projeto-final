@@ -5,7 +5,7 @@ introdução as tecnologias web, desenvolvido por João Capucho e Carolina Silva
 
 Built with:
 
-- [Bootstrap v5.2](https://getbootstrap.com/docs/5.2/)
+- [Bootstrap v5.3](https://getbootstrap.com/docs/5.3/)
 - [Font Awesome v4.7](https://fontawesome.com/v4/icons/)
 
 ## Developing
