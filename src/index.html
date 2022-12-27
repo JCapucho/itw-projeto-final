@@ -14,8 +14,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <!-- Include the index's css stylesheet -->
-    <link href="styles/index.css" rel="stylesheet">
+    <!-- Import JQueryUi CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css"
+        integrity="sha512-ELV+xyi8IhEApPS/pSj66+Jiw+sOT1Mqkzlh8ExXihe4zfqbWkxPRi8wptXIO9g73FSlhmquFlUOuMSoXz5IRw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Include the global css stylesheet -->
+    <link href="styles/athlete.css" rel="stylesheet">
     <!-- Import FontAwesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
@@ -88,6 +92,23 @@
                 </ul>
                 <hr class="d-lg-none text-body">
                 <ul class="navbar-nav me-2">
+                    <!-- Global search bar -->
+                    <li>
+                        <div class="ui-widget">
+                            <input
+                                id="globalSearch"
+                                class="form-control me-2"
+                                type="search"
+                                placeholder="Search everything"
+                                aria-label="Search everything"
+                                autocomplete="off"
+                            >
+                        </div>
+                    </li>
+                    <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
+                        <div class="vr d-none d-lg-flex h-100 ms-4 me-2 text-white"></div>
+                        <hr class="d-lg-none my-2 text-white-50">
+                    </li>
                     <!-- Favorites Route -->
                     <li class="nav-item">
                         <a class="nav-link" href="favorites.html">
@@ -214,7 +235,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
         integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Include JQuery bundle-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"
+        integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Include JQueryUi bundle-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"
+        integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="scripts/globals.js"></script>
+    <script src="scripts/components.js"></script>
     <script src="scripts/index.js"></script>
 </body>
 

@@ -77,7 +77,7 @@ function IndexViewModel() {
     fetchGameImages();
 }
 
-ko.applyBindings(new IndexViewModel())
+ko.applyBindings(new IndexViewModel());
 
 const tl = anime.timeline({
   easing: 'easeOutExpo',

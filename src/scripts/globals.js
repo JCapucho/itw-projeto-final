@@ -204,6 +204,69 @@ if (typeof ko === "object") {
     }
 }
 
+function globalSearchBar() {
+    function getIconForTable(table) {
+        return 'fa-' + {
+            "Athletes": 'user-o',
+            "Competitions": 'trophy',
+            "Countries": 'flag-o',
+            "Modalities": 'bicycle',
+            "Games": 'futbol-o',
+        }[table];
+    }
+
+    function getPageForTable(table) {
+        return {
+            "Athletes": 'athlete.html',
+            "Competitions": 'competition.html',
+            "Countries": 'country.html',
+            "Modalities": 'modality.html',
+            "Games": 'game.html',
+        }[table];
+    }
+
+    $("#globalSearch").autocomplete({
+        minLength: 3,
+        source: async function(request, resolve) {
+            const params = new URLSearchParams({ q: request.term });
+            const response = await fetch(`${API_URL}/Utils/Search?` + params);
+            const data = await response.json();
+            const results = data.slice(0, 10).map(record => ({
+                label: record.Name,
+                value: record,
+            }));
+            resolve(results);
+        },
+        position: { collision: "flip" },
+        focus: function(event, ui) {
+            event.preventDefault();
+            $(this).val(ui.item.label);
+        },
+        select: function(event, ui) {
+            event.preventDefault();
+            $(this).val(ui.item.label);
+            const record = ui.item.value;
+            window.location.href = `${getPageForTable(record.TableName)}?id=${record.Id}`;
+        },
+        create: function (event, ui) {
+            $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
+                const icon = $("<i>")
+                    .addClass(["fa", getIconForTable(item.value.TableName)])
+                    .attr("aria-hidden", true);
+
+                const inner = $("<div>")
+                    .append(icon)
+                    .append("&nbsp;")
+                    .append(item.label);
+
+                return $("<li>").append(inner).appendTo(ul);
+            };
+        }
+    });
+}
+
+globalSearchBar();
+
 // Bootstrap dark mode code
 (() => {
   'use strict'
