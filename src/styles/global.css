@@ -1,106 +1,105 @@
 body {
-    font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .carousel-item img {
-    max-height: 500px;
-    object-position: center bottom;
-    min-width: auto;
-    object-fit: cover;
+  max-height: 500px;
+  object-position: center bottom;
+  min-width: auto;
+  object-fit: cover;
 }
 
 .carousel-caption {
-    background: radial-gradient(rgba(0, 0, 0, 0.85), transparent 80%);
+  background: radial-gradient(rgba(0, 0, 0, 0.85), transparent 80%);
 }
 
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
-    filter: unset !important;
+  filter: unset !important;
 }
 
 .athlete-img {
-    width: 100%;
-    max-width: 500px;
+  width: 100%;
+  max-width: 500px;
 }
 
 .game-cover {
-    width: 200px;
-    transition:all 0.25s ease;
+  width: 200px;
+  transition: all 0.25s ease;
 }
 
 .game-cover:hover {
-    transform: scale(2);
+  transform: scale(2);
 }
 
 .gameDetails-img {
-    max-height: 200px;
+  max-height: 200px;
 }
 
 .card-image {
-    height: 200px;
-    object-position: center top;
-    min-width: auto;
-    object-fit: cover;
+  height: 200px;
+  object-position: center top;
+  min-width: auto;
+  object-fit: cover;
 }
 
 .mini-card-image {
-    height: 100px;
-    object-position: center top;
-    min-width: auto;
-    object-fit: cover;
+  height: 100px;
+  object-position: center top;
+  min-width: auto;
+  object-fit: cover;
 }
 
 .country-card-image {
-    height: 100px;
-    object-position: center center;
-    min-width: auto;
-    object-fit: cover;
+  height: 100px;
+  object-position: center center;
+  min-width: auto;
+  object-fit: cover;
 }
 
 .details-chart {
-    max-width: 400px;
-    max-height: 400px;
-    margin: 0 auto;
+  max-width: 400px;
+  max-height: 400px;
+  margin: 0 auto;
 }
 
 .about-card-image {
-    height: 500px;
-    max-width: 300px;
+  height: 500px;
+  max-width: 300px;
 
-    position: relative;
+  position: relative;
 
-    transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
-.about-card-image>img {
-    width: 100%;
-    height: 100%;
+.about-card-image > img {
+  width: 100%;
+  height: 100%;
 
-    object-position: center top;
-    object-fit: cover;
+  object-position: center top;
+  object-fit: cover;
 
-    border-radius: 12px;
-    box-shadow: 0 5px 5px rgba(150,170,180,0.5);
+  border-radius: 12px;
+  box-shadow: 0 5px 5px rgba(150, 170, 180, 0.5);
 }
 
-.about-card-image>h2 {
-    position: absolute;
-    bottom: 5%;
-    width: 100%;
-    text-align: center;
-    font-weight: bolder;
-    text-shadow: #558ABB 1px 0 10px;
+.about-card-image > h2 {
+  position: absolute;
+  bottom: 5%;
+  width: 100%;
+  text-align: center;
+  font-weight: bolder;
+  text-shadow: #558abb 1px 0 10px;
 }
 
 .about-card-image:hover {
-    transform: scale(1.2);
-    z-index: 10;
+  transform: scale(1.2);
+  z-index: 10;
 }
 
-
 .ui-autocomplete {
-    border: var(--bs-border-width) solid var(--bs-border-color-translucent) !important;
-    color: var(--bs-secondary-color);
-    background-color: var(--bs-body-bg);
-    border-radius: var(--bs-border-radius);
+  border: var(--bs-border-width) solid var(--bs-border-color-translucent) !important;
+  color: var(--bs-secondary-color);
+  background-color: var(--bs-body-bg);
+  border-radius: var(--bs-border-radius);
 }
