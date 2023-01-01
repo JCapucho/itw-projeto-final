@@ -1,5 +1,7 @@
 const gameId = new URLSearchParams(window.location.search).get("id");
 
+if (gameId === null) window.location.href = `games.html`;
+
 async function loadChartData() {
   const response = await fetch(
     `${API_URL}/Statistics/Medals_Country?id=${gameId}`
@@ -70,17 +72,41 @@ function GameViewModel() {
 
   self.medals = ko.observable("");
 
+  self.athleteList = ko.observableArray([]);
+  self.athletePage = ko.observable(0);
+  self.athleteEntries = ko.observableArray([]);
+  self.totalPages = ko.observable(0);
+  self.nextPage = function () {
+    const next = self.athletePage() + 1;
+    self.athleteEntries(self.athleteList().slice(10 * next, 10 * (next + 1)));
+    self.athletePage(next);
+  };
+  self.lastPage = function () {
+    const next = self.athletePage() - 1;
+    self.athleteEntries(self.athleteList().slice(10 * next, 10 * (next + 1)));
+    self.athletePage(next);
+  };
+
   async function loadGameInfo() {
     const response = await fetch(`${API_URL}/Games/FullDetails?id=${gameId}`);
     const data = await response.json();
     console.log(data);
     self.game(data);
 
-    const goldMedals = data.Medals.find(medal => medal.MedalId === 1).Counter;
-    const silverMedals = data.Medals.find(medal => medal.MedalId === 2).Counter;
-    const bronzeMedals = data.Medals.find(medal => medal.MedalId === 3).Counter;
+    const goldMedals = data.Medals.find((medal) => medal.MedalId === 1).Counter;
+    const silverMedals = data.Medals.find(
+      (medal) => medal.MedalId === 2
+    ).Counter;
+    const bronzeMedals = data.Medals.find(
+      (medal) => medal.MedalId === 3
+    ).Counter;
 
     self.medals(`🥇 ${goldMedals} 🥈 ${silverMedals} 🥉 ${bronzeMedals}`);
+
+    self.athletePage(0);
+    self.athleteList(data.Athletes);
+    self.athleteEntries(data.Athletes.slice(0, 10));
+    self.totalPages(Math.ceil(data.Athletes.length / 10));
 
     loadChartData();
     loadMap(data.City, data.CountryName);
@@ -93,8 +119,43 @@ function GameViewModel() {
   loadGameInfo();
 }
 
-if (gameId === null) {
-  window.location.href = `games.html`;
-} else {
-  ko.applyBindings(new GameViewModel());
+const vm = new GameViewModel();
+
+function fetcher(term) {
+  return vm
+    .game()
+    .Athletes.filter((record) =>
+      record.Name.toLowerCase().includes(term.toLowerCase())
+    );
 }
+
+function change(term) {
+  const results = fetcher(term);
+
+  vm.athletePage(0);
+  vm.athleteList(results);
+  vm.athleteEntries(results.slice(0, 10));
+  vm.totalPages(Math.ceil(results.length / 10));
+}
+
+ko.bindingHandlers.search = {
+  init: function (element, valueAccessor) {
+    rawSearchBar(element, {
+      change,
+      fetcher,
+      select: function (record) {
+        window.location.href = `athlete.html?id=${record.Id}`;
+      },
+      minLength: 1,
+      buildItem: function (el, item) {
+        const icon = $("<i>")
+          .addClass(["fa", "fa-user-o"])
+          .attr("aria-hidden", true);
+
+        el.append(icon).append("&nbsp;").append(item.label);
+      },
+    });
+  },
+};
+
+ko.applyBindings(vm);

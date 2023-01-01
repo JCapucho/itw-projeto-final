@@ -484,6 +484,76 @@
             </tfoot>
           </table>
         </div>
+
+        <div class="mt-5 border-top pt-5">
+          <div class="row">
+            <h1 class="col-12 col-sm-6">Athletes</h1>
+            <div class="col-12 col-sm-6 ui-widget">
+              <input
+                data-bind="search"
+                class="form-control me-2 mt-auto"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th></th>
+              </tr>
+              <!-- ko if: $root.athletePage() > 0 -->
+              <tr>
+                <td colspan="3" class="text-center">
+                  <button
+                    class="btn text-primary"
+                    data-bind="click: $root.lastPage"
+                  >
+                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                    Last page
+                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                  </button>
+                </td>
+              </tr>
+              <!-- /ko -->
+            </thead>
+            <tbody data-bind="foreach: $root.athleteEntries">
+              <tr class="align-middle">
+                <td data-bind="formatNameSex: {name: Name, sex: Sex}"></td>
+                <td class="text-end">
+                  <span
+                    class="me-1"
+                    data-bind="formatBestPosition: BestPosition"
+                  ></span>
+                  <a
+                    class="btn btn-primary me-2"
+                    title="View details"
+                    data-bind="attr: {href: 'athlete.html?id=' + Id}"
+                  >
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot data-bind="if: $root.athletePage() + 1 < $root.totalPages()">
+              <tr>
+                <td colspan="3" class="text-center">
+                  <button
+                    class="btn text-primary"
+                    data-bind="click: $root.nextPage"
+                  >
+                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                    Next page
+                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                  </button>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
     </div>
 
@@ -605,6 +675,7 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="scripts/globals.js"></script>
+    <script src="scripts/components.js"></script>
     <script src="scripts/charts.js"></script>
     <script src="scripts/game.js"></script>
   </body>

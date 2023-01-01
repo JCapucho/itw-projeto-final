@@ -12,14 +12,12 @@ function CompetitionsViewModel() {
   self.loader = createListLoader(self.games, "Games", favoritesSection);
   self.toggleFavorite = favoriteToggle(favoritesSection);
 
-  self.season.subscribe(function(value) {
+  self.season.subscribe(function (value) {
     const season = event.target.value;
     viewModel.loader.reset();
 
-    if (season !== "0")
-      viewModel.loader.extraParams = { season };
-    else
-      viewModel.loader.extraParams = null;
+    if (season !== "0") viewModel.loader.extraParams = { season };
+    else viewModel.loader.extraParams = null;
 
     viewModel.loader.loadMore();
   });

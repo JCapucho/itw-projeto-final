@@ -257,29 +257,26 @@ function AthletesViewModel() {
 
   self.athletes = ko.observableArray([]);
   self.sortingOptions = ko.observableArray([
-      { name: "Name ascending", value: "NameUp" },
-      { name: "Name descending", value: "NameDn" },
-      { name: "Height ascending", value: "HeightUp" },
-      { name: "Height descending", value: "HeightDn" },
-      { name: "Sex feminine", value: "SexUp" },
-      { name: "Sex masculine", value: "SexDn" },
+    { name: "Name ascending", value: "NameUp" },
+    { name: "Name descending", value: "NameDn" },
+    { name: "Height ascending", value: "HeightUp" },
+    { name: "Height descending", value: "HeightDn" },
+    { name: "Sex feminine", value: "SexUp" },
+    { name: "Sex masculine", value: "SexDn" },
   ]);
-  self.sortBy = ko.observable(self.sortingOptions()[0])
+  self.sortBy = ko.observable(self.sortingOptions()[0]);
 
-  self.loader = createListLoader(
-    self.athletes,
-    "Athletes",
-    favoritesSection,
-    { extraParams: { sortby: self.sortBy().value } }
-  );
+  self.loader = createListLoader(self.athletes, "Athletes", favoritesSection, {
+    extraParams: { sortby: self.sortBy().value },
+  });
   self.toggleFavorite = favoriteToggle(favoritesSection);
 
   self.sortBy.subscribe(function ({ value }) {
-      viewModel.loader.reset();
+    viewModel.loader.reset();
 
-      viewModel.loader.extraParams.sortby = value;
+    viewModel.loader.extraParams.sortby = value;
 
-      viewModel.loader.loadMore();
+    viewModel.loader.loadMore();
   });
 }
 

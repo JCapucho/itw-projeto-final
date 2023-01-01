@@ -94,44 +94,30 @@ const vm = new FavoritesViewModel();
 
 ko.applyBindings(vm);
 
-function search(term) {
+function fetcher(term) {
   return favorites.filter((record) =>
     record.Name.toLowerCase().includes(term.toLowerCase())
   );
 }
 
-$("#search").autocomplete({
-  source: function (request, resolve) {
-    const data = search(request.term);
-    const results = data.slice(0, 10).map((record) => ({
-      label: record.Name,
-      value: record,
-    }));
-    resolve(results);
-  },
-  change: function () {
-    const results = search($("#search").val());
-    vm.favoritesEntries(results);
-  },
-  focus: function (event, ui) {
-    event.preventDefault();
-    $("#search").val(ui.item.label);
-  },
-  select: function (event, ui) {
-    event.preventDefault();
-    $("#search").val(ui.item.label);
-    const record = ui.item.value;
+function change(term) {
+  const results = fetcher(term);
+
+  vm.favoritesEntries(results);
+}
+
+rawSearchBar(document.getElementById("search"), {
+  change,
+  fetcher,
+  select: function (record) {
     window.location.href = `${record.Page}?id=${record.Id}`;
   },
-  create: function (event, ui) {
-    $(this).data("ui-autocomplete")._renderItem = function (ul, item) {
-      const icon = $("<i>")
-        .addClass(["fa", getIconForSection(item.value.section)])
-        .attr("aria-hidden", true);
+  minLength: 1,
+  buildItem: function (el, item) {
+    const icon = $("<i>")
+      .addClass(["fa", getIconForSection(item.value.section)])
+      .attr("aria-hidden", true);
 
-      const inner = $("<div>").append(icon).append("&nbsp;").append(item.label);
-
-      return $("<li>").append(inner).appendTo(ul);
-    };
+    el.append(icon).append("&nbsp;").append(item.label);
   },
 });

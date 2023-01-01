@@ -221,57 +221,57 @@
 
     <div class="container">
       <div class="border-bottom py-2">
-          <div class="row g-2">
-            <div class="col-8 col-md-4 my-auto">
-              Found <span data-bind="text: loader.totalEntries"></span> athletes
-            </div>
-            <div class="col-4 col-md-2 text-end text-lg-center">
-              <a
-                class="btn"
-                data-bind="class: view() === 'grid' ? 'text-primary' : 'text-body'"
-                title="List grid"
-                href="#grid"
-              >
-                <i class="fa fa-th-large" aria-hidden="true"></i>
-              </a>
-              <a
-                class="btn"
-                data-bind="class: view() === 'list' ? 'text-primary' : 'text-body'"
-                title="List view"
-                href="#list"
-              >
-                <i class="fa fa-list" aria-hidden="true"></i>
-              </a>
-            </div>
-            <div class="col-12 col-md-6 ui-widget">
-              <input
-                id="search"
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-                autocomplete="off"
-              />
-            </div>
+        <div class="row g-2">
+          <div class="col-8 col-md-4 my-auto">
+            Found <span data-bind="text: loader.totalEntries"></span> athletes
           </div>
-          <div class="row mt-2 g-2">
-            <div class="offset-md-4 col-12 col-md-4">
-              <select 
-                class="form-select"
-                aria-label="Filter by season"
-                data-bind="options: sortingOptions, value: sortBy, optionsText: 'name'"
-              ></select>
-            </div>
-            <div class="col-12 col-md-4 ui-widget">
-              <input
-                id="ioc"
-                class="form-control me-2"
-                type="search"
-                placeholder="Filter by IOC"
-                aria-label="Filter by IOC"
-                autocomplete="off"
-              />
-            </div>
+          <div class="col-4 col-md-2 text-end text-lg-center">
+            <a
+              class="btn"
+              data-bind="class: view() === 'grid' ? 'text-primary' : 'text-body'"
+              title="List grid"
+              href="#grid"
+            >
+              <i class="fa fa-th-large" aria-hidden="true"></i>
+            </a>
+            <a
+              class="btn"
+              data-bind="class: view() === 'list' ? 'text-primary' : 'text-body'"
+              title="List view"
+              href="#list"
+            >
+              <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+          </div>
+          <div class="col-12 col-md-6 ui-widget">
+            <input
+              id="search"
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              autocomplete="off"
+            />
+          </div>
+        </div>
+        <div class="row mt-2 g-2">
+          <div class="offset-md-4 col-12 col-md-4">
+            <select
+              class="form-select"
+              aria-label="Filter by season"
+              data-bind="options: sortingOptions, value: sortBy, optionsText: 'name'"
+            ></select>
+          </div>
+          <div class="col-12 col-md-4 ui-widget">
+            <input
+              id="ioc"
+              class="form-control me-2"
+              type="search"
+              placeholder="Filter by IOC"
+              aria-label="Filter by IOC"
+              autocomplete="off"
+            />
+          </div>
         </div>
       </div>
 
