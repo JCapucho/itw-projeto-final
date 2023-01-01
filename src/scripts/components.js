@@ -1,6 +1,11 @@
 function searchBar(id, page, endpoint, loader, { minLength = 2 } = {}) {
+  let lastSearch = "";
+
   async function changeDetected() {
     const term = $(id).val();
+
+    if (lastSearch === term) return;
+
     loader.reset();
 
     if (!term) {
@@ -17,6 +22,8 @@ function searchBar(id, page, endpoint, loader, { minLength = 2 } = {}) {
 
       loader.loading(false);
     }
+
+    lastSearch = term;
 
     loader.loadMore();
   }
