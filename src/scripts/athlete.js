@@ -66,7 +66,6 @@ function AthleteViewModel() {
       `${API_URL}/Athletes/FullDetails?id=${athleteId}`
     );
     const data = await response.json();
-    console.log(data);
     self.athlete(data);
 
     if (data.BornPlace) loadMap(data.BornPlace);

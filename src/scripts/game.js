@@ -70,8 +70,6 @@ function GameViewModel() {
     return icon + " " + season;
   }, self);
 
-  self.medals = ko.observable("");
-
   self.athleteList = ko.observableArray([]);
   self.athletePage = ko.observable(0);
   self.athleteEntries = ko.observableArray([]);
@@ -90,18 +88,7 @@ function GameViewModel() {
   async function loadGameInfo() {
     const response = await fetch(`${API_URL}/Games/FullDetails?id=${gameId}`);
     const data = await response.json();
-    console.log(data);
     self.game(data);
-
-    const goldMedals = data.Medals.find((medal) => medal.MedalId === 1).Counter;
-    const silverMedals = data.Medals.find(
-      (medal) => medal.MedalId === 2
-    ).Counter;
-    const bronzeMedals = data.Medals.find(
-      (medal) => medal.MedalId === 3
-    ).Counter;
-
-    self.medals(`🥇 ${goldMedals} 🥈 ${silverMedals} 🥉 ${bronzeMedals}`);
 
     self.athletePage(0);
     self.athleteList(data.Athletes);

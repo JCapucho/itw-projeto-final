@@ -296,6 +296,12 @@
               <td colspan="2" data-bind="text: Weight"></td>
             </tr>
             <!-- /ko -->
+            <!-- ko if: Medals.length !== 0 -->
+            <tr>
+              <th scope="row">Medals</th>
+              <td colspan="2" data-bind="formatMedals: Medals"></td>
+            </tr>
+            <!-- /ko -->
             <!-- ko if: OlympediaLink !== null -->
             <tr>
               <td colspan="3" class="text-center">

@@ -94,6 +94,28 @@ if (typeof ko === "object") {
     },
   };
 
+  ko.bindingHandlers.formatMedals = {
+    update: function (element, valueAccessor) {
+      const value = ko.unwrap(valueAccessor());
+
+      let goldMedals, silverMedals, bronzeMedals;
+
+      for (const medal of value) {
+        if (medal.MedalId === 1) goldMedals = medal.Counter;
+        else if (medal.MedalId === 2) silverMedals = medal.Counter;
+        else if (medal.MedalId === 3) bronzeMedals = medal.Counter;
+      }
+
+      element.textContent = [
+        goldMedals && `🥇 ${goldMedals}`,
+        silverMedals && `🥈 ${silverMedals}`,
+        bronzeMedals && `🥉 ${bronzeMedals}`,
+      ]
+        .filter(Boolean)
+        .join(" ");
+    },
+  };
+
   function createCollapsibleListObject(getData, limit = 5) {
     const scope = {};
     scope.open = ko.observable(false);
