@@ -270,19 +270,19 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Year</th>
+            <th class="d-none d-md-table-cell">Year</th>
             <th>Name</th>
-            <th>City</th>
+            <th class="d-none d-md-table-cell">City</th>
             <th>Country</th>
             <th></th>
           </tr>
         </thead>
         <tbody data-bind="foreach: games">
           <tr class="align-middle">
-            <th data-bind="text: Year"></th>
+            <th data-bind="text: Year" class="d-none d-md-table-cell"></th>
             <td data-bind="text: Name"></td>
             <td data-bind="text: CityName"></td>
-            <td data-bind="text: CountryName"></td>
+            <td data-bind="text: CountryName" class="d-none d-md-table-cell"></td>
             <td class="text-end">
               <button
                 class="btn me-1 text-danger"
