@@ -256,9 +256,31 @@ function AthletesViewModel() {
   self.view = makeViewSelectionController();
 
   self.athletes = ko.observableArray([]);
+  self.sortingOptions = ko.observableArray([
+      { name: "Name ascending", value: "NameUp" },
+      { name: "Name descending", value: "NameDn" },
+      { name: "Height ascending", value: "HeightUp" },
+      { name: "Height descending", value: "HeightDn" },
+      { name: "Sex feminine", value: "SexUp" },
+      { name: "Sex masculine", value: "SexDn" },
+  ]);
+  self.sortBy = ko.observable(self.sortingOptions()[0])
 
-  self.loader = createListLoader(self.athletes, "Athletes", favoritesSection);
+  self.loader = createListLoader(
+    self.athletes,
+    "Athletes",
+    favoritesSection,
+    { extraParams: { sortby: self.sortBy().value } }
+  );
   self.toggleFavorite = favoriteToggle(favoritesSection);
+
+  self.sortBy.subscribe(function ({ value }) {
+      viewModel.loader.reset();
+
+      viewModel.loader.extraParams.sortby = value;
+
+      viewModel.loader.loadMore();
+  });
 }
 
 const viewModel = new AthletesViewModel();
@@ -273,7 +295,7 @@ function setIOCFilter(ioc) {
     viewModel.loader.extraParams = { ioc };
   } else {
     viewModel.loader.endpoint = "Athletes";
-    viewModel.loader.extraParams = null;
+    delete viewModel.loader.extraParams.ioc;
   }
 
   viewModel.loader.loadMore();
@@ -303,7 +325,7 @@ $("#ioc").autocomplete({
     setIOCFilter(ui.item.value.ioc);
   },
   change: function (event, ui) {
-    setIOCFilter(ui.item?.ioc);
+    setIOCFilter(ui.item?.value?.ioc);
   },
   create: function (event, ui) {
     $(this).data("ui-autocomplete")._renderItem = function (ul, item) {
