@@ -1,3 +1,4 @@
+const favoritesSection = "games";
 const gameId = new URLSearchParams(window.location.search).get("id");
 
 if (gameId === null) window.location.href = `games.html`;
@@ -88,6 +89,7 @@ function GameViewModel() {
   async function loadGameInfo() {
     const response = await fetch(`${API_URL}/Games/FullDetails?id=${gameId}`);
     const data = await response.json();
+    favoriteAdapter(favoritesSection)(data);
     self.game(data);
 
     self.athletePage(0);
@@ -102,6 +104,7 @@ function GameViewModel() {
   self.game.subscribe(function (newValue) {
     document.title = `${newValue.Name} - ${document.title}`;
   });
+  self.toggleFavorite = favoriteToggle(favoritesSection);
 
   loadGameInfo();
 }

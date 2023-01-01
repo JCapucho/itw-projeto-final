@@ -246,21 +246,34 @@
           ></li>
         </ol>
       </nav>
-      <h1 class="display-1 border-bottom">
-        <span data-bind="text: Name"></span>
-        <span data-bind="text: IOC"></span>
-
-        <span class="float-end me-2">
+      <div class="row border-bottom mb-4">
+        <h1 class="col-12 col-md-11 display-1">
+          <span data-bind="text: Name"></span>
+          <span data-bind="text: IOC"></span>
+        </h1>
+        <div
+          class="col-12 col-md-1 d-flex justify-content-center align-items-center"
+        >
           <button
-            class="btn btn-primary btn-lg"
+            class="btn btn-primary btn-lg me-2"
             title="View on a map"
             data-bs-toggle="modal"
             data-bs-target="#mapModal"
           >
             <i class="fa fa-map" aria-hidden="true"></i>
           </button>
-        </span>
-      </h1>
+          <button
+            class="btn text-danger"
+            data-bind="click: $root.toggleFavorite"
+          >
+            <i
+              class="fa fa-3x"
+              data-bind="class: isFavorite() ? 'fa-heart' : 'fa-heart-o'"
+              aria-hidden="true"
+            ></i>
+          </button>
+        </div>
+      </div>
       <div
         class="d-flex gap-3 flex-column flex-lg-row align-items-center align-items-lg-start justify-content-lg-between"
       >
@@ -284,7 +297,7 @@
               <th></th>
             </thead>
             <tbody data-bind="foreach: Organizer">
-              <tr>
+              <tr class="align-middle">
                 <td data-bind="text: Year"></td>
                 <td data-bind="text: Name"></td>
                 <td data-bind="text: CityName"></td>
@@ -316,14 +329,14 @@
           <th></th>
         </thead>
         <tbody data-bind="foreach: entries">
-          <tr>
+          <tr class="align-middle">
             <th data-bind="text: Year"></th>
             <td data-bind="text: Name"></td>
             <td data-bind="text: CountryName"></td>
             <td data-bind="text: CityName"></td>
             <td class="text-end">
               <a
-                class="btn btn-primary me-2"
+                class="btn btn-primary me-2 mb-2 mb-md-0"
                 title="View details"
                 data-bind="attr: {href: 'countryGameDetails.html?country=' + $parents[1].Id + '&game=' + Id}"
               >
@@ -485,6 +498,7 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="scripts/globals.js"></script>
+    <script src="scripts/favorites.js"></script>
     <script src="scripts/country.js"></script>
   </body>
 </html>

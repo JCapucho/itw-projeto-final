@@ -1,3 +1,4 @@
+const favoritesSection = "countries";
 const countryId = new URLSearchParams(window.location.search).get("id");
 
 async function loadMap(country) {
@@ -46,6 +47,7 @@ function CountryViewModel() {
   async function loadCountryInfo() {
     const response = await fetch(`${API_URL}/Countries/${countryId}`);
     const data = await response.json();
+    favoriteAdapter(favoritesSection)(data);
     self.country(data);
 
     loadMap(data.Name);
@@ -54,6 +56,7 @@ function CountryViewModel() {
   self.country.subscribe(function (newValue) {
     document.title = `${newValue.Name} - ${document.title}`;
   });
+  self.toggleFavorite = favoriteToggle(favoritesSection);
 
   loadCountryInfo();
 }

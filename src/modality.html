@@ -233,9 +233,25 @@
           ></li>
         </ol>
       </nav>
-      <h1 class="display-1 border-bottom">
-        <span data-bind="text: Name"></span>
-      </h1>
+      <div class="row border-bottom mb-4">
+        <h1 class="col-12 col-md-11 display-1">
+          <span data-bind="text: Name"></span>
+        </h1>
+        <div
+          class="col-12 col-md-1 d-flex justify-content-center align-items-center"
+        >
+          <button
+            class="btn text-danger"
+            data-bind="click: $root.toggleFavorite"
+          >
+            <i
+              class="fa fa-3x"
+              data-bind="class: isFavorite() ? 'fa-heart' : 'fa-heart-o'"
+              aria-hidden="true"
+            ></i>
+          </button>
+        </div>
+      </div>
       <div
         class="d-flex gap-3 flex-column flex-lg-row align-items-center align-items-lg-start justify-content-lg-between"
       >
@@ -337,6 +353,7 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="scripts/globals.js"></script>
+    <script src="scripts/favorites.js"></script>
     <script src="scripts/modality.js"></script>
   </body>
 </html>

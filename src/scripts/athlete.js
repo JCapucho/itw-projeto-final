@@ -1,3 +1,4 @@
+const favoritesSection = "athletes";
 const athleteId = new URLSearchParams(window.location.search).get("id");
 
 async function loadMap(place) {
@@ -60,12 +61,17 @@ function AthleteViewModel() {
   self.athlete.subscribe(function (newValue) {
     document.title = `${newValue.Name} - ${document.title}`;
   });
+  self.toggleFavorite = favoriteToggle(favoritesSection);
 
   async function loadAthleteInfo() {
     const response = await fetch(
       `${API_URL}/Athletes/FullDetails?id=${athleteId}`
     );
     const data = await response.json();
+    data.BestPosition = data.Medals.reduce((accum, medal) => {
+      if (medal.MedalId < accum && medal.Counter !== 0) accum = medal.MedalId;
+    }, 4);
+    favoriteAdapter(favoritesSection)(data);
     self.athlete(data);
 
     if (data.BornPlace) loadMap(data.BornPlace);
