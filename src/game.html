@@ -273,6 +273,10 @@
               <td colspan="2" data-bind="html: $root.seasonIcon"></td>
             </tr>
             <tr>
+              <th scope="row">Medals</th>
+              <td colspan="2" data-bind="text: $root.medals"></td>
+            </tr>
+            <tr>
               <td colspan="3" class="text-center">
                 <img
                   class="game-cover"
@@ -503,7 +507,7 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body" data-bind="with: game">
+          <div class="modal-body text-center" data-bind="with: game">
             <img
               class="img-fluid"
               data-bind="attr:{src: Photo || 'assets/img/empty-user.webp'}"
